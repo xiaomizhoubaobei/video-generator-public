@@ -1,0 +1,33 @@
+{
+  "$include": "/app/npc.json",
+  "agent": {
+    "defaultModel": "${ai_model}",
+    "maxSteps": 200,
+    "temperature": 0.3,
+    "instructions": [
+      "/srv/docs/cnb-api-reference.md",
+      "/srv/docs/cnb-api-quickref.md"
+    ],
+    "providers": {
+      "openai": {
+        "apiKey": "${CNB_TOKEN}",
+        "baseUrl": "${CNB_API_ENDPOINT}/${CNB_REPO_SLUG}/-/ai/"
+      }
+    }
+  },
+  "permission": {
+    "skill": {
+      "*": "allow"
+    }
+  },
+  "skills": {
+    "entries": {
+      "CNB-OpenAPI": {
+        "env": {
+          "CNB_API_ENDPOINT": "${CNB_API_ENDPOINT}",
+          "CNB_KNOWLEDGEBASE_REPO_SLUG": "cnb/feedback"
+        }
+      }
+    }
+  }
+}
