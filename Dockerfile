@@ -1,5 +1,5 @@
 # Base image
-FROM node:lts AS base
+FROM node:lts@sha256:e9891237dfbb1de60ce19e9ff9fac5d73ad9c37da303ad72ff2a425ad1057e71 AS base
 
 # Stage 1: Install dependencies only when needed
 FROM base AS deps
