@@ -251,14 +251,22 @@
     "@commitlint/types" "^20.4.0"
     ajv "^8.11.0"
 
-"@commitlint/cz-commitlint@^20.1.0":
-  version "20.4.1"
-  resolved "https://repo.huaweicloud.com/repository/npm/@commitlint/cz-commitlint/-/cz-commitlint-20.4.1.tgz#b7164735d7c1dc7bd6afbb14bbc113eb71106aa8"
-  integrity sha512-ZxtONcpX4h4ir+aFKenyhQ6cqhGiVbHfsUpXMJz+u494KKkw5mPjD5CmbWk8Vgw5o9b22KLBwZaIdwiWCD7aqA==
+"@commitlint/config-validator@^21.0.0":
+  version "21.0.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-validator/-/config-validator-21.0.0.tgz#8976991244135efc5225701fa834c729b1c827e6"
+  integrity sha512-v0UplTYryNUB463X5WrelzKq5/qyYm9/iUNk38S7ZLnd56Uuk2T9awhYKGlgD2/4L5YuN2gsKkyy4EHpRPPz2Q==
   dependencies:
-    "@commitlint/ensure" "^20.4.1"
-    "@commitlint/load" "^20.4.0"
-    "@commitlint/types" "^20.4.0"
+    "@commitlint/types" "^21.0.0"
+    ajv "^8.11.0"
+
+"@commitlint/cz-commitlint@^21.0.0":
+  version "21.0.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-21.0.0.tgz#4192b16d655eea5957180362f17342298ce986f0"
+  integrity sha512-q1wIZq4UkBfrdqLSC+lbzv/6h+t3Qg4M/Am2dX0tXGMyXV5sfElPb48rbdDSN+EGc6sfYGGs7pBPk+6q2r20Rw==
+  dependencies:
+    "@commitlint/ensure" "^21.0.0"
+    "@commitlint/load" "^21.0.0"
+    "@commitlint/types" "^21.0.0"
     is-plain-obj "^4.1.0"
     picocolors "^1.1.1"
     word-wrap "^1.2.5"
@@ -275,10 +283,23 @@
     lodash.startcase "^4.4.0"
     lodash.upperfirst "^4.3.1"
 
+"@commitlint/ensure@^21.0.0":
+  version "21.0.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/ensure/-/ensure-21.0.0.tgz#8bb8335048ca1889256116ad388f92f5bab1163b"
+  integrity sha512-n+OYs0Ws9GKC2WlmAeLNoPz9CUg6n/ZyYMkFF8rJ0aMn2kDTDTG0VqK/2Dco0EB4fhuF3JPIllJmU9/LKTl4aw==
+  dependencies:
+    "@commitlint/types" "^21.0.0"
+    es-toolkit "^1.46.0"
+
 "@commitlint/execute-rule@^20.0.0":
   version "20.0.0"
   resolved "https://repo.huaweicloud.com/repository/npm/@commitlint/execute-rule/-/execute-rule-20.0.0.tgz#013628e09179cf2d3c977e1cf37937b5cb869af8"
   integrity sha512-xyCoOShoPuPL44gVa+5EdZsBVao/pNzpQhkzq3RdtlFdKZtjWcLlUFQHSWBuhk5utKYykeJPSz2i8ABHQA+ZZw==
+
+"@commitlint/execute-rule@^21.0.0":
+  version "21.0.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/execute-rule/-/execute-rule-21.0.0.tgz#40afe10fc60933bef7154dc30b00f502b1e12304"
+  integrity sha512-3OhTq2gQX1tEheMsbDNqxfcNHsAM6g9cub9plf05I9jCxtbNfn8Y+mhClKyUwhX4dbtmC4OLZ9i+HNmoL1aksA==
 
 "@commitlint/format@^20.4.0":
   version "20.4.0"
@@ -306,7 +327,22 @@
     "@commitlint/rules" "^20.4.2"
     "@commitlint/types" "^20.4.0"
 
-"@commitlint/load@>6.1.1", "@commitlint/load@^20.4.0":
+"@commitlint/load@>6.1.1", "@commitlint/load@^21.0.0":
+  version "21.0.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-21.0.0.tgz#9de58aef5c9524b55bccff3a30127ff247cd565b"
+  integrity sha512-l0nBfO/20PKcJXHZqDIgh7kw/TWVVwn8zZJOkVGBK/ig/h328jBu9jK7OiDl2oZr5mLphmKGjYDR2ffEyb2lIA==
+  dependencies:
+    "@commitlint/config-validator" "^21.0.0"
+    "@commitlint/execute-rule" "^21.0.0"
+    "@commitlint/resolve-extends" "^21.0.0"
+    "@commitlint/types" "^21.0.0"
+    cosmiconfig "^9.0.1"
+    cosmiconfig-typescript-loader "^6.1.0"
+    es-toolkit "^1.46.0"
+    is-plain-obj "^4.1.0"
+    picocolors "^1.1.1"
+
+"@commitlint/load@^20.4.0":
   version "20.4.0"
   resolved "https://repo.huaweicloud.com/repository/npm/@commitlint/load/-/load-20.4.0.tgz#fee4e705250b7f2643fd781a7ba5bc6ec0e8a105"
   integrity sha512-Dauup/GfjwffBXRJUdlX/YRKfSVXsXZLnINXKz0VZkXdKDcaEILAi9oflHGbfydonJnJAbXEbF3nXPm9rm3G6A==
@@ -378,6 +414,17 @@
     lodash.mergewith "^4.6.2"
     resolve-from "^5.0.0"
 
+"@commitlint/resolve-extends@^21.0.0":
+  version "21.0.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/resolve-extends/-/resolve-extends-21.0.0.tgz#d35ecd7470f20250c24c5301f72a4a5fb9701923"
+  integrity sha512-hrJYSZRpmecmSoxYrpuJ/1Q4J9JHt4AVVtr5/Ac6upLO/jJ1DnIm2AjD+38gru3KGOec4aHCVqETuWWLJhydWw==
+  dependencies:
+    "@commitlint/config-validator" "^21.0.0"
+    "@commitlint/types" "^21.0.0"
+    es-toolkit "^1.46.0"
+    global-directory "^5.0.0"
+    resolve-from "^5.0.0"
+
 "@commitlint/rules@^20.4.2":
   version "20.4.2"
   resolved "https://repo.huaweicloud.com/repository/npm/@commitlint/rules/-/rules-20.4.2.tgz#0370422fedc037b0e00259445d9b82377743a8a1"
@@ -406,6 +453,14 @@
   integrity sha512-aO5l99BQJ0X34ft8b0h7QFkQlqxC6e7ZPVmBKz13xM9O8obDaM1Cld4sQlJDXXU/VFuUzQ30mVtHjVz74TuStw==
   dependencies:
     conventional-commits-parser "^6.2.1"
+    picocolors "^1.1.1"
+
+"@commitlint/types@^21.0.0":
+  version "21.0.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-21.0.0.tgz#3c22abea1300956d594065490131fbecebe171da"
+  integrity sha512-6nEz+M7I90iix4sviA8NLwskOuyt0M98KUU2aYgiKbn46jMSxUm1l2ACtzRd9ec+y38aKyJhW4Fp6NW0z35kJQ==
+  dependencies:
+    conventional-commits-parser "^6.3.0"
     picocolors "^1.1.1"
 
 "@date-fns/tz@^1.4.1":
@@ -2103,6 +2158,11 @@
   resolved "https://repo.huaweicloud.com/repository/npm/@shikijs/vscode-textmate/-/vscode-textmate-10.0.2.tgz#a90ab31d0cc1dfb54c66a69e515bf624fa7b2224"
   integrity sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==
 
+"@simple-libs/stream-utils@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@simple-libs/stream-utils/-/stream-utils-1.2.0.tgz#5af724b826f1ab4d7f2826d31d3efccec124102b"
+  integrity sha512-KxXvfapcixpz6rVEB6HPjOUZT22yN6v0vI0urQSk1L8MlEWPDFCZkhw2xmkyoTGYeFw7tWTZd7e3lVzRZRN/EA==
+
 "@splinetool/runtime@0.9.526":
   version "0.9.526"
   resolved "https://repo.huaweicloud.com/repository/npm/@splinetool/runtime/-/runtime-0.9.526.tgz#36be96f0cd224d1a90fda67ade6c67fe6651b933"
@@ -3597,6 +3657,14 @@ conventional-commits-parser@^6.2.1:
   dependencies:
     meow "^13.0.0"
 
+conventional-commits-parser@^6.3.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/conventional-commits-parser/-/conventional-commits-parser-6.4.0.tgz#8ac1c12ec467354ed4d73ec940efe380e1e83686"
+  integrity sha512-tvRg7FIBNlyPzjdG8wWRlPHQJJHI7DylhtRGeU9Lq+JuoPh5BKpPRX83ZdLrvXuOSu5Eo/e7SzOQhU4Hd2Miuw==
+  dependencies:
+    "@simple-libs/stream-utils" "^1.2.0"
+    meow "^13.0.0"
+
 convert-source-map@^1.5.0:
   version "1.9.0"
   resolved "https://repo.huaweicloud.com/repository/npm/convert-source-map/-/convert-source-map-1.9.0.tgz#7faae62353fb4213366d0ca98358d22e8368b05f"
@@ -3655,6 +3723,16 @@ cosmiconfig@^9.0.0:
   version "9.0.0"
   resolved "https://repo.huaweicloud.com/repository/npm/cosmiconfig/-/cosmiconfig-9.0.0.tgz#34c3fc58287b915f3ae905ab6dc3de258b55ad9d"
   integrity sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==
+  dependencies:
+    env-paths "^2.2.1"
+    import-fresh "^3.3.0"
+    js-yaml "^4.1.0"
+    parse-json "^5.2.0"
+
+cosmiconfig@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-9.0.1.tgz#df110631a8547b5d1a98915271986f06e3011379"
+  integrity sha512-hr4ihw+DBqcvrsEDioRO31Z17x71pUYoNe/4h6Z0wB72p7MU7/9gH8Q3s12NFhHPfYBBOV3qyfUxmr/Yn3shnQ==
   dependencies:
     env-paths "^2.2.1"
     import-fresh "^3.3.0"
@@ -4387,6 +4465,11 @@ es-toolkit@^1.39.3, es-toolkit@^1.41.0:
   resolved "https://repo.huaweicloud.com/repository/npm/es-toolkit/-/es-toolkit-1.44.0.tgz#b363b436b6115c3cc9cc21954c1e08ecdaa51c8c"
   integrity sha512-6penXeZalaV88MM3cGkFZZfOoLGWshWWfdy0tWw/RlVVyhvMaWSBTOvXNeiW3e5FwdS5ePW0LGEu17zT139ktg==
 
+es-toolkit@^1.46.0:
+  version "1.46.1"
+  resolved "https://registry.yarnpkg.com/es-toolkit/-/es-toolkit-1.46.1.tgz#38ca27191a98a867fc544b81cf1477a68947fb06"
+  integrity sha512-5eNtXOs3tbfxXOj04tjjseeWkRWaoCjdEI+96DgwzZoe6c9juL49pXlzAFTI72aWC9Y8p7168g6XIKjh7k6pyQ==
+
 esast-util-from-estree@^2.0.0:
   version "2.0.0"
   resolved "https://repo.huaweicloud.com/repository/npm/esast-util-from-estree/-/esast-util-from-estree-2.0.0.tgz#8d1cfb51ad534d2f159dc250e604f3478a79f1ad"
@@ -5070,6 +5153,13 @@ global-directory@^4.0.1:
   dependencies:
     ini "4.1.1"
 
+global-directory@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/global-directory/-/global-directory-5.0.0.tgz#0f66a94212acd0f81ee838d0a991e88d1c2836cf"
+  integrity sha512-1pgFdhK3J2LeM+dVf2Pd424yHx2ou338lC0ErNP2hPx4j8eW1Sp0XqSjNxtk6Tc4Kr5wlWtSvz8cn2yb7/SG/w==
+  dependencies:
+    ini "6.0.0"
+
 global-modules@^1.0.0:
   version "1.0.0"
   resolved "https://repo.huaweicloud.com/repository/npm/global-modules/-/global-modules-1.0.0.tgz#6d770f0eb523ac78164d72b5e71a8877265cc3ea"
@@ -5489,6 +5579,11 @@ ini@4.1.1:
   version "4.1.1"
   resolved "https://repo.huaweicloud.com/repository/npm/ini/-/ini-4.1.1.tgz#d95b3d843b1e906e56d6747d5447904ff50ce7a1"
   integrity sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==
+
+ini@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ini/-/ini-6.0.0.tgz#efc7642b276f6a37d22fdf56ef50889d7146bf30"
+  integrity sha512-IBTdIkzZNOpqm7q3dRqJvMaldXjDHWkEDfrwGEQTs5eaQMWV+djAhR+wahyNNMAa+qpbDUhBMVt4ZKNwpPm7xQ==
 
 ini@^1.3.4:
   version "1.3.8"
