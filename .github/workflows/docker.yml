@@ -21,7 +21,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: 加固运行器（审计所有出站调用）
-              uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
+              uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
               with:
                   egress-policy: audit
 
@@ -133,17 +133,17 @@ jobs:
                   done <<< "${{ steps.meta.outputs.tags }}"
 
             - name: 证明 DockerHub 镜像
-              uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
+              uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
               with:
                 subject-name: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/302_prompt_generator
                 subject-digest: ${{ steps.build.outputs.digest }}
                 push-to-registry: true
 
             - name: 证明 GHCR 镜像
-              uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
+              uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
               with:
                 subject-name: ghcr.io/${{ github.repository }}/302_prompt_generator
                 subject-digest: ${{ steps.build.outputs.digest }}
                 push-to-registry: true
 
-            
+
