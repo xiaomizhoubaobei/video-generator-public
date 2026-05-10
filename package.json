@@ -11,7 +11,7 @@
     "commitlint": "commitlint"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.27.16",
+    "@floating-ui/react": "^0.27.19",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@lobehub/icons": "^5.8.0",
@@ -68,8 +68,8 @@
     "mitt": "^3.0.1",
     "motion": "^12.38.0",
     "nanoid": "^5.1.11",
-    "next": "^16.2.3",
-    "next-intl": "^4.9.2",
+    "next": "^16.2.6",
+    "next-intl": "^4.11.1",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
     "react-day-picker": "^9.11.1",
@@ -96,7 +96,7 @@
     "@types/node": "^24.9.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "eslint": "^9.38.0",
+    "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.6",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
