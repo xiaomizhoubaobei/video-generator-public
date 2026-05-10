@@ -11,7 +11,7 @@
     "commitlint": "commitlint"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.27.16",
+    "@floating-ui/react": "^0.27.19",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@lobehub/icons": "^5.8.0",
