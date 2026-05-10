@@ -121,5 +121,8 @@
   "overrides": {
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2"
+  },
+  "resolutions": {
+    "lodash-es": "4.18.1"
   }
 }
