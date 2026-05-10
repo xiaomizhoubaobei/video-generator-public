@@ -2267,10 +2267,10 @@ acorn@^8.15.0:
   resolved "https://repo.huaweicloud.com/repository/npm/acorn/-/acorn-8.16.0.tgz#4ce79c89be40afe7afe8f3adb902a1f1ce9ac08a"
   integrity sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==
 
-ahooks@^3.9.5:
-  version "3.9.6"
-  resolved "https://repo.huaweicloud.com/repository/npm/ahooks/-/ahooks-3.9.6.tgz#c93b8f826266d07cada40439be8865d55733fb19"
-  integrity sha512-Mr7f05swd5SmKlR9SZo5U6M0LsL4ErweLzpdgXjA1JPmnZ78Vr6wzx0jUtvoxrcqGKYnX0Yjc02iEASVxHFPjQ==
+ahooks@^3.9.7:
+  version "3.9.7"
+  resolved "https://registry.yarnpkg.com/ahooks/-/ahooks-3.9.7.tgz#0d28d4619b8bf7b8cd20aee0c487bfcd59d43d06"
+  integrity sha512-S0lvzhbdlhK36RFBkGv+RbOM/dbbweym+BIHM/bwwuWVSVN5TuVErHPMWo4w0t1NDYg5KPp2iEf7Y7E5LASYiw==
   dependencies:
     "@babel/runtime" "^7.21.0"
     "@types/js-cookie" "^3.0.6"
