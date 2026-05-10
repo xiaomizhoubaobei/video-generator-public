@@ -3763,7 +3763,7 @@ husky@^9.1.7:
   resolved "https://repo.huaweicloud.com/repository/npm/husky/-/husky-9.1.7.tgz#d46a38035d101b46a70456a850ff4201344c0b2d"
   integrity sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==
 
-icu-minify@^4.11.1, icu-minify@^4.9.2:
+icu-minify@^4.11.1:
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/icu-minify/-/icu-minify-4.11.1.tgz#9c584f6bb090238abb4b8eb33b76df8b754b60a5"
   integrity sha512-C0tsPVuvyNp+++qWJP+mty/KLLStjerOZqu3W1xWLJkChEDbDi9Taoj6blK7L/onxbuVzwgH6k9Sf+rOV6lOvw==
@@ -4545,24 +4545,24 @@ negotiator@^1.0.0:
   resolved "https://repo.huaweicloud.com/repository/npm/negotiator/-/negotiator-1.0.0.tgz#b6c91bb47172d69f93cfd7c357bbb529019b5f6a"
   integrity sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==
 
-next-intl-swc-plugin-extractor@^4.9.2:
+next-intl-swc-plugin-extractor@^4.11.1:
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/next-intl-swc-plugin-extractor/-/next-intl-swc-plugin-extractor-4.11.1.tgz#3817c80605329cb3d45099fbf11fb2c1ce6eb105"
   integrity sha512-jHKGij7NoYccy2y54+e/wHVMoRgNt4h/Kn0XS9c4GbKu3KgJyANLUN8sFcDixv6sqz4V2kh6CTWgrkIidQksUg==
 
-next-intl@^4.9.2:
-  version "4.9.2"
-  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-4.9.2.tgz#a5a279611197e8b5a3018ef8fd2999589315d345"
-  integrity sha512-AZoMRsVGLZczB2hisq1OTWmNAYAKwk/jaWH4+9pfl5TCG8kbILZZptZHux9zw7DyN1yzh6X7jmaQvoykHs9Y7Q==
+next-intl@^4.11.1:
+  version "4.11.1"
+  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-4.11.1.tgz#69024ea1764558214f4a27e6e92e3ca5a9ac8451"
+  integrity sha512-s32lFFLXkxrW6fy+4IVaGD5J8xPpbEDFLfBbXV73CTbHAGhOGMjYN4/rftdsKOQ44AnPhnZ5Et+ZNMr5tRpsqA==
   dependencies:
     "@formatjs/intl-localematcher" "^0.8.1"
     "@parcel/watcher" "^2.4.1"
     "@swc/core" "^1.15.2"
-    icu-minify "^4.9.2"
+    icu-minify "^4.11.1"
     negotiator "^1.0.0"
-    next-intl-swc-plugin-extractor "^4.9.2"
+    next-intl-swc-plugin-extractor "^4.11.1"
     po-parser "^2.1.1"
-    use-intl "^4.9.2"
+    use-intl "^4.11.1"
 
 next-themes@^0.4.6:
   version "0.4.6"
@@ -5666,7 +5666,7 @@ use-callback-ref@^1.3.3:
   dependencies:
     tslib "^2.0.0"
 
-use-intl@^4.9.2:
+use-intl@^4.11.1:
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/use-intl/-/use-intl-4.11.1.tgz#66c0cda0e6073d32c7e80d38e3f912ee074cc721"
   integrity sha512-/dqWSqUSbVMzC+fdy7io8enhGYHeGeHK1bFhTLrp0ZblqdzY4FkE+tkffW6IfCauqaIA2/z4DQae4XEn93+raw==
