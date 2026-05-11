@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { setCookie } from "cookies-next";
 import { useTheme as useNextTheme } from "next-themes";
-import { useEffect } from "react";
 import { THEME_COOKIE_NAME } from "@/constants";
 
 export const useTheme = () => {
@@ -13,9 +13,7 @@ export const useTheme = () => {
   useEffect(() => {
     let newTheme = theme;
     if (theme === "system") {
-      newTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+      newTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
     // When the theme is modified on the client side, set the cookie.
     // The server will set the theme based on the cookie value.

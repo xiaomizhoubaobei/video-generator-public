@@ -2,7 +2,6 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-
 import { isTaskComplete } from "@/components/business/left-panel/model-registry";
 import {
   createVideoGeneratorJob,
@@ -14,7 +13,8 @@ import {
   updateTaskAtom,
   videoTasksAtom,
 } from "@/stores/slices/video-task.store";
-import { CreateTaskParams, TaskStatus, VideoTask } from "@/types/video-task";
+import type { CreateTaskParams, VideoTask } from "@/types/video-task";
+import { TaskStatus } from "@/types/video-task";
 import { createScopedLogger } from "@/utils";
 
 const logger = createScopedLogger("useVideoTaskPolling");
@@ -155,17 +155,14 @@ export function useAllTasksPolling() {
   const tasks = useAtomValue(videoTasksAtom);
   const pendingTasks = useAtomValue(pendingTasksAtom);
 
-  const pollingResults = pendingTasks.map((task) =>
-    useVideoTaskPolling(task.id)
-  );
+  const pollingResults = pendingTasks.map((task) => useVideoTaskPolling(task.id));
 
   return {
     tasks,
     pendingTasks,
     pollingResults,
     isAnyPending: pollingResults.some((result) => result.isFetching),
-    completedCount: tasks.filter((t) => t.status === TaskStatus.COMPLETED)
-      .length,
+    completedCount: tasks.filter((t) => t.status === TaskStatus.COMPLETED).length,
     failedCount: tasks.filter((t) => t.status === TaskStatus.FAILED).length,
   };
 }
@@ -176,7 +173,6 @@ export function useModelPendingTasks(model: string) {
   return tasks.filter(
     (task) =>
       task.model === model &&
-      (task.status === TaskStatus.PENDING ||
-        task.status === TaskStatus.PROCESSING)
+      (task.status === TaskStatus.PENDING || task.status === TaskStatus.PROCESSING),
   );
 }

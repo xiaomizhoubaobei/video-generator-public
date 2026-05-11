@@ -1,15 +1,12 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useSetAtom } from "jotai";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  type SignInFormType,
-  SignInSchema,
-} from "@/components/forms/auth/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useSetAtom } from "jotai";
+import { useTranslations } from "next-intl";
+import { usePathname, useSearchParams } from "next/navigation";
+import { SignInSchema, type SignInFormType } from "@/components/forms/auth/schema";
 import {
   CHINA_REGION,
   FALSE_STRING,
@@ -119,7 +116,7 @@ const useAuth = () => {
         setIsPending(false);
       }
     },
-    [t, setError, pathname, replace, setConfig]
+    [t, setError, pathname, replace, setConfig],
   );
 
   // Callback for form submission
@@ -127,7 +124,7 @@ const useAuth = () => {
     async (data: SignInFormType) => {
       await performAuth(data);
     },
-    [performAuth]
+    [performAuth],
   );
 
   const onAuth = useCallback(() => {

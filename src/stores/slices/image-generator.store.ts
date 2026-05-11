@@ -1,7 +1,6 @@
 import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
-
-import { ImageGeneratorSchemaType } from "@/services/image-generator/image-generator.schema";
+import type { ImageGeneratorSchemaType } from "@/services/image-generator/image-generator.schema";
 
 const STORAGE_KEY = "IMAGE_GENERATOR_FORM";
 
@@ -15,9 +14,7 @@ const DEFAULT_FORM_VALUES: Partial<ImageGeneratorSchemaType> = {
   image: undefined,
 };
 
-export const imageGeneratorFormAtom = atomWithStorage<
-  Partial<ImageGeneratorSchemaType>
->(
+export const imageGeneratorFormAtom = atomWithStorage<Partial<ImageGeneratorSchemaType>>(
   STORAGE_KEY,
   DEFAULT_FORM_VALUES,
   createJSONStorage(() =>
@@ -27,11 +24,11 @@ export const imageGeneratorFormAtom = atomWithStorage<
           getItem: () => null,
           setItem: () => null,
           removeItem: () => null,
-        }
+        },
   ),
   {
     getOnInit: true,
-  }
+  },
 );
 
 export const isImageGeneratorFormValidAtom = atom<boolean>((get) => {

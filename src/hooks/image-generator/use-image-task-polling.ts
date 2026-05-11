@@ -2,7 +2,6 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom, useSetAtom } from "jotai";
-
 import { isTaskComplete } from "@/components/business/left-panel/model-registry";
 import {
   createImageGeneratorJob,
@@ -14,7 +13,7 @@ import {
   imageTasksAtom,
   updateImageTaskAtom,
 } from "@/stores/slices/image-task.store";
-import { ImageTask } from "@/types/image-task";
+import type { ImageTask } from "@/types/image-task";
 import { TaskStatus } from "@/types/video-task";
 import { createScopedLogger } from "@/utils";
 

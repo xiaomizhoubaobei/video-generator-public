@@ -1,10 +1,8 @@
 import { useMemo, useState } from "react";
-
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { History } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-
 import { LoaderRenderer } from "@/components/common/loader-renderer";
 import { VideoGeneratorForm } from "@/components/forms/video-generator/video-generator.form";
 import { Button } from "@/components/ui/button";
@@ -13,11 +11,8 @@ import { useIsMobile } from "@/hooks/global/use-mobile";
 import { useCreateVideoTask } from "@/hooks/video-generator/use-video-task-polling";
 import { cn } from "@/lib/utils";
 import { languageAtom, store } from "@/stores";
-import {
-  UiStoreActiveTab,
-  uiStoreAtom,
-  updateVideoModelAtom,
-} from "@/stores/slices/ui.store";
+import type { UiStoreActiveTab } from "@/stores/slices/ui.store";
+import { uiStoreAtom, updateVideoModelAtom } from "@/stores/slices/ui.store";
 import {
   isVideoGeneratorFormValidAtom,
   resetVideoGeneratorFormAtom,
@@ -29,7 +24,6 @@ import {
   runningTasksCountAtom,
 } from "@/stores/slices/video-task.store";
 import { createScopedLogger } from "@/utils";
-
 import { LdrsLoader } from "../ldrs-loader";
 import { VideoModelSelect } from "./video-model-select";
 
@@ -94,9 +88,7 @@ export function LeftPanel({ onDrawerClicked }: LeftPanelProps) {
   const formData = useAtomValue(videoGeneratorFormAtom);
 
   // Check concurrency limit
-  const isExceedingConcurrencyLimit = useAtomValue(
-    isExceedingConcurrencyLimitAtom
-  );
+  const isExceedingConcurrencyLimit = useAtomValue(isExceedingConcurrencyLimitAtom);
   const runningTasksCount = useAtomValue(runningTasksCountAtom);
 
   // Get current model price with language matching
@@ -104,20 +96,14 @@ export function LeftPanel({ onDrawerClicked }: LeftPanelProps) {
   const modelPrice = useMemo<string>((): string => {
     if (!currentModel) return "";
     const uiLanguage = store.get(languageAtom);
-    const languageSuffix =
-      uiLanguage === "en" ? "_en" : uiLanguage === "ja" ? "_jp" : "";
+    const languageSuffix = uiLanguage === "en" ? "_en" : uiLanguage === "ja" ? "_jp" : "";
     return (
-      (currentModel[
-        `price_text${languageSuffix}` as keyof typeof currentModel
-      ] as string) || ""
+      (currentModel[`price_text${languageSuffix}` as keyof typeof currentModel] as string) || ""
     );
   }, [currentModel]);
 
   const getTabTextClass = (tabValue: UiStoreActiveTab) => {
-    return cn(
-      "text-sm font-medium",
-      uiStore.activeTab === tabValue && "text-primary"
-    );
+    return cn("text-sm font-medium", uiStore.activeTab === tabValue && "text-primary");
   };
 
   const handleGenerateVideo = async () => {
@@ -156,8 +142,7 @@ export function LeftPanel({ onDrawerClicked }: LeftPanelProps) {
       ...prev,
       activeTab: value as UiStoreActiveTab,
     }));
-    const modelId =
-      value === "t2v" ? uiStore.t2vVideoModel : uiStore.i2vVideoModel;
+    const modelId = value === "t2v" ? uiStore.t2vVideoModel : uiStore.i2vVideoModel;
     updateVideoGeneratorFormAtom({ model: modelId });
   };
 
@@ -178,18 +163,14 @@ export function LeftPanel({ onDrawerClicked }: LeftPanelProps) {
         <TabsList
           className={cn(
             "mb-4 flex flex-shrink-0 flex-row justify-between rounded-none bg-transparent p-0 pr-6",
-            isMobile ? "w-fit" : "w-full"
+            isMobile ? "w-fit" : "w-full",
           )}
         >
           <TabsTrigger className={TABS_TRIGGER_CLASS} value="t2v">
-            <span className={getTabTextClass("t2v")}>
-              {t("tabs.text_to_image")}
-            </span>
+            <span className={getTabTextClass("t2v")}>{t("tabs.text_to_image")}</span>
           </TabsTrigger>
           <TabsTrigger className={TABS_TRIGGER_CLASS} value="i2v">
-            <span className={getTabTextClass("i2v")}>
-              {t("tabs.image_to_video")}
-            </span>
+            <span className={getTabTextClass("i2v")}>{t("tabs.image_to_video")}</span>
           </TabsTrigger>
         </TabsList>
 
@@ -217,15 +198,11 @@ export function LeftPanel({ onDrawerClicked }: LeftPanelProps) {
         </TabsContent>
 
         <div className="flex-shrink-0 space-y-2 pt-4 pr-6">
-          <p className="text-muted-foreground text-xs">
-            {renderTextWithLinks(modelPrice)}
-          </p>
+          <p className="text-muted-foreground text-xs">{renderTextWithLinks(modelPrice)}</p>
 
           <Button
             className="w-full"
-            disabled={
-              !isFormValid || isExceedingConcurrencyLimit || isCreatingTask
-            }
+            disabled={!isFormValid || isExceedingConcurrencyLimit || isCreatingTask}
             onClick={handleGenerateVideo}
           >
             <LoaderRenderer

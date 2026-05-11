@@ -1,9 +1,10 @@
 "use client";
+
+import { startTransition } from "react";
 import { useSetAtom } from "jotai";
 import { LanguagesIcon } from "lucide-react";
-import { useParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { startTransition } from "react";
+import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -17,9 +18,9 @@ import { usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { languageAtom } from "@/stores/slices/language_store";
 
-type LanguageSwitchProps = {
+interface LanguageSwitchProps {
   className?: string;
-};
+}
 export function LanguageSwitcher({ className }: LanguageSwitchProps) {
   const t = useTranslations();
   const locale = useLocale();
@@ -34,7 +35,7 @@ export function LanguageSwitcher({ className }: LanguageSwitchProps) {
         // are used in combination with a given `pathname`. Since the two will
         // always match for the current route, we can skip runtime checks.
         { pathname, params },
-        { locale }
+        { locale },
       );
     });
     setLanguage(locale);
@@ -52,10 +53,7 @@ export function LanguageSwitcher({ className }: LanguageSwitchProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent aria-describedby={undefined}>
-        <DropdownMenuRadioGroup
-          value={locale as string}
-          onValueChange={handleChangeLocale}
-        >
+        <DropdownMenuRadioGroup value={locale as string} onValueChange={handleChangeLocale}>
           {APP_LANG_OPTION.map((language) => (
             <DropdownMenuRadioItem key={language.id} value={language.value}>
               {language.label}

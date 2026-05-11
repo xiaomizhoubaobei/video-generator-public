@@ -1,4 +1,5 @@
 "use client";
+
 import { useAtomValue } from "jotai";
 import { Info } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -36,9 +37,7 @@ function ToolInfo({ className }: Props) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{t("global.header.tool_info.title")}</DialogTitle>
-          <DialogDescription>
-            {t("global.header.tool_info.description")}
-          </DialogDescription>
+          <DialogDescription>{t("global.header.tool_info.description")}</DialogDescription>
         </DialogHeader>
         <div
           dangerouslySetInnerHTML={{ __html: config.toolInfo || "" }}

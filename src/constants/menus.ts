@@ -1,12 +1,12 @@
 import { env } from "@/env";
 
-export type MenuProps = {
+export interface MenuProps {
   // IMPORTANT: The label key for i18n
   label: string;
   path: string;
   // IMPORTANT: Whether the route needs to be authenticated
   needAuth?: boolean;
-};
+}
 
 // TODO: Add your route menu here
 export const APP_ROUTE_MENU: MenuProps[] = [

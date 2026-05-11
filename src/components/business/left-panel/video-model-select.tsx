@@ -1,11 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
 import { useAtomValue } from "jotai";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
-
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -15,16 +13,11 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { VideoModelSchemaType } from "@/services/video-model/video-model.schema";
+import type { VideoModelSchemaType } from "@/services/video-model/video-model.schema";
 import { languageAtom, store } from "@/stores";
 import { getVideoModelsByCapabilityAtom } from "@/stores/slices/video-model.store";
-
 import { CommandItemWithTooltip } from "./command-item-with-tooltip";
 
 interface TransformedModel {
@@ -57,14 +50,13 @@ export function VideoModelSelect({
   const getModelsByCapability = useAtomValue(getVideoModelsByCapabilityAtom);
   const models = useMemo(
     () => getModelsByCapability(capability),
-    [getModelsByCapability, capability]
+    [getModelsByCapability, capability],
   );
 
   // Transform API models to component format
   const transformedModels: TransformedModel[] = useMemo(() => {
     const uiLanguage = store.get(languageAtom);
-    const languageSuffix =
-      uiLanguage === "en" ? "_en" : uiLanguage === "ja" ? "_jp" : "";
+    const languageSuffix = uiLanguage === "en" ? "_en" : uiLanguage === "ja" ? "_jp" : "";
     const infoBasedLanguage = (model: VideoModelSchemaType) => {
       return {
         price_text: model[`price_text${languageSuffix}`],
@@ -110,11 +102,7 @@ export function VideoModelSelect({
       }
     }
 
-    return (
-      <span className="text-muted-foreground">
-        {placeholder ?? t("select_model")}
-      </span>
-    );
+    return <span className="text-muted-foreground">{placeholder ?? t("select_model")}</span>;
   };
 
   return (
@@ -126,10 +114,7 @@ export function VideoModelSelect({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className={cn(
-              "bg-background w-full justify-between px-3 font-normal",
-              className
-            )}
+            className={cn("bg-background w-full justify-between px-3 font-normal", className)}
           >
             {getDisplayValue()}
             <ChevronDown className="h-4 w-4 shrink-0 opacity-50" />
@@ -140,20 +125,18 @@ export function VideoModelSelect({
             <CommandInput placeholder={t("search_model")} />
             <CommandList>
               <CommandEmpty>{t("no_model_found")}</CommandEmpty>
-              {Object.entries(groupedModels).map(
-                ([provider, providerModels]) => (
-                  <CommandGroup key={provider} heading={provider}>
-                    {providerModels.map((model) => (
-                      <CommandItemWithTooltip
-                        key={model.id}
-                        model={model}
-                        isSelected={value === model.id}
-                        onSelect={() => handleSelect(model.id)}
-                      />
-                    ))}
-                  </CommandGroup>
-                )
-              )}
+              {Object.entries(groupedModels).map(([provider, providerModels]) => (
+                <CommandGroup key={provider} heading={provider}>
+                  {providerModels.map((model) => (
+                    <CommandItemWithTooltip
+                      key={model.id}
+                      model={model}
+                      isSelected={value === model.id}
+                      onSelect={() => handleSelect(model.id)}
+                    />
+                  ))}
+                </CommandGroup>
+              ))}
             </CommandList>
           </Command>
         </PopoverContent>

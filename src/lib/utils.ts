@@ -18,13 +18,9 @@ export async function convertToPng(file: File): Promise<File> {
 
       canvas.toBlob((blob) => {
         if (blob) {
-          const convertedFile = new File(
-            [blob],
-            file.name.replace(/\.[^/.]+$/, ".png"),
-            {
-              type: "image/png",
-            }
-          );
+          const convertedFile = new File([blob], file.name.replace(/\.[^/.]+$/, ".png"), {
+            type: "image/png",
+          });
           resolve(convertedFile);
         } else {
           reject(new Error("Canvas to Blob conversion failed"));

@@ -10,11 +10,11 @@ name: "Node.js 安全代码扫描"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: "0 0 * * 0"
   workflow_dispatch:
 
 permissions:
@@ -29,18 +29,18 @@ jobs:
     runs-on: ubuntu-latest
     name: njsscan 代码扫描
     steps:
-    - name: 加固运行器（审计所有出站调用）
-      uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
-      with:
-        egress-policy: audit
-    - name: 检出代码
-      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-    - name: nodejsscan 扫描
-      id: njsscan
-      uses: ajinabraham/njsscan-action@231750a435d85095d33be7d192d52ec650625146
-      with:
-        args: '. --sarif --output results.sarif || true'
-    - name: 上传 njsscan 报告
-      uses: github/codeql-action/upload-sarif@9e907b5e64f6b83e7804b09294d44122997950d6 # v4.32.3
-      with:
-        sarif_file: results.sarif
+      - name: 加固运行器（审计所有出站调用）
+        uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+        with:
+          egress-policy: audit
+      - name: 检出代码
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: nodejsscan 扫描
+        id: njsscan
+        uses: ajinabraham/njsscan-action@231750a435d85095d33be7d192d52ec650625146
+        with:
+          args: ". --sarif --output results.sarif || true"
+      - name: 上传 njsscan 报告
+        uses: github/codeql-action/upload-sarif@9e907b5e64f6b83e7804b09294d44122997950d6 # v4.32.3
+        with:
+          sarif_file: results.sarif

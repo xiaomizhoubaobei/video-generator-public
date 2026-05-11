@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { useSetAtom } from "jotai";
 import { RotateCw } from "lucide-react";
 import { useTranslations } from "next-intl";
-
 import { Button } from "@/components/ui/button";
 import { videoGeneratorFormAtom } from "@/stores";
 
@@ -80,9 +78,7 @@ export function T2VExamples() {
     },
   ];
 
-  const [selectedExamples, setSelectedExamples] = useState<
-    { title: string; prompt: string }[]
-  >([]);
+  const [selectedExamples, setSelectedExamples] = useState<{ title: string; prompt: string }[]>([]);
 
   // 获取三个随机示例
   const getRandomExamples = () => {

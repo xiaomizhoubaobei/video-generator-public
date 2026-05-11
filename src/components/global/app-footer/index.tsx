@@ -1,15 +1,14 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { forwardRef } from "react";
-
+import { useTranslations } from "next-intl";
 import { useIsHideBrand } from "@/hooks/global/use-is-hide-brand";
 import { cn } from "@/lib/utils";
 import AppLogo from "../app-logo";
 
-type FooterProps = {
+interface FooterProps {
   className?: string;
-};
+}
 
 const Footer = forwardRef<HTMLDivElement, FooterProps>(({ className }, ref) => {
   const t = useTranslations();
@@ -23,18 +22,11 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ className }, ref) => {
       style={{ color: "rgb(102, 102, 102)", fontSize: "12px" }}
       ref={ref}
     >
-      <div className="break-all text-center">
-        {t("global.footer.copyright_leading")}
-      </div>
+      <div className="text-center break-all">{t("global.footer.copyright_leading")}</div>
       <div className="flex items-center justify-center gap-1">
         {t.rich("global.footer.copyright_content", {
           logo: () => (
-            <AppLogo
-              size="full"
-              className="mx-auto h-[18px] w-[64px]"
-              height={72}
-              width={256}
-            />
+            <AppLogo size="full" className="mx-auto h-[18px] w-[64px]" height={72} width={256} />
           ),
         })}
       </div>

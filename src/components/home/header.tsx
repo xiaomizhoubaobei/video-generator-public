@@ -1,9 +1,9 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import AppLogo from "@/components/global/app-logo";
 import { useIsHideBrand } from "@/hooks/global/use-is-hide-brand";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
 
 interface HomeHeaderProps {
   className?: string;

@@ -1,7 +1,6 @@
 import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
-
-import { ImageTask } from "@/types/image-task";
+import type { ImageTask } from "@/types/image-task";
 import { TaskStatus } from "@/types/video-task";
 
 const STORAGE_KEY = "IMAGE_TASKS";
@@ -16,9 +15,9 @@ export const imageTasksAtom = atomWithStorage<ImageTask[]>(
           getItem: () => null,
           setItem: () => null,
           removeItem: () => null,
-        }
+        },
   ),
-  { getOnInit: true }
+  { getOnInit: true },
 );
 
 export const addImageTaskAtom = atom(null, (get, set, task: ImageTask) => {
@@ -32,16 +31,16 @@ export const updateImageTaskAtom = atom(
     const tasks = get(imageTasksAtom);
     set(
       imageTasksAtom,
-      tasks.map((task) => (task.id === id ? { ...task, ...updates } : task))
+      tasks.map((task) => (task.id === id ? { ...task, ...updates } : task)),
     );
-  }
+  },
 );
 
 export const removeImageTaskAtom = atom(null, (get, set, id: string) => {
   const tasks = get(imageTasksAtom);
   set(
     imageTasksAtom,
-    tasks.filter((task) => task.id !== id)
+    tasks.filter((task) => task.id !== id),
   );
 });
 
@@ -54,8 +53,6 @@ export const taskByIdAtom = (taskId: string) =>
 export const pendingImageTasksAtom = atom((get) => {
   const tasks = get(imageTasksAtom);
   return tasks.filter(
-    (task) =>
-      task.status === TaskStatus.PENDING ||
-      task.status === TaskStatus.PROCESSING
+    (task) => task.status === TaskStatus.PENDING || task.status === TaskStatus.PROCESSING,
   );
 });

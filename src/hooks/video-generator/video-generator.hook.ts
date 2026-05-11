@@ -1,8 +1,7 @@
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
-import { useForm } from "react-hook-form";
-
 import {
   videoGeneratorSchema,
   type VideoGeneratorSchemaType,
@@ -40,10 +39,7 @@ export function useVideoGeneratorForm() {
         message: issue.message,
       }));
 
-      logger.debug(
-        "Formatted validation errors:",
-        JSON.stringify(formattedErrors, null, 2)
-      );
+      logger.debug("Formatted validation errors:", JSON.stringify(formattedErrors, null, 2));
 
       // Set errors
       formattedErrors.forEach((error) => {
@@ -61,9 +57,7 @@ export function useVideoGeneratorForm() {
         const firstError = formattedErrors[0];
         const firstErrorField = firstError.path[firstError.path.length - 1];
         if (typeof firstErrorField === "string") {
-          const errorElement = document.querySelector(
-            `[name="${firstErrorField}"]`
-          );
+          const errorElement = document.querySelector(`[name="${firstErrorField}"]`);
           logger.debug("First error field:", firstErrorField);
           if (errorElement instanceof HTMLElement) {
             errorElement.focus();

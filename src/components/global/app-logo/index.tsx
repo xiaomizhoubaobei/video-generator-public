@@ -1,18 +1,17 @@
 "use client";
 
 import Image from "next/image";
-
 import { useDomain } from "@/hooks/global/use-domain";
 import { cn } from "@/lib/utils";
 
-type AppLogoProps = {
+interface AppLogoProps {
   size?: "mini" | "full";
   height?: number;
   width?: number;
   quality?: number;
   className?: string;
   wrapperClassName?: string;
-};
+}
 
 export default function AppLogo({
   size = "mini",
@@ -24,12 +23,7 @@ export default function AppLogo({
 }: AppLogoProps) {
   const domain = useDomain();
   return (
-    <a
-      href={domain}
-      rel="noreferrer"
-      target="_blank"
-      className={cn(wrapperClassName)}
-    >
+    <a href={domain} rel="noreferrer" target="_blank" className={cn(wrapperClassName)}>
       {size === "mini" ? (
         <Image
           alt="ai-302"

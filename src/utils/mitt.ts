@@ -2,15 +2,15 @@
 
 import mitt from "mitt";
 
-export type ToastInfo = {
+export interface ToastInfo {
   code: number;
   message: string;
-};
+}
 
-export type MittEvent = {
+export interface MittEvent {
   ToastError: ToastInfo;
   ToastSuccess: ToastInfo;
-};
+}
 const emitter = mitt<MittEvent>();
 
 export { emitter };

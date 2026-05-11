@@ -1,8 +1,9 @@
 "use client";
-import SignInForm from "@/components/forms/auth";
-import AppLogo from "@/components/global/app-logo";
+
 import { Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
+import SignInForm from "@/components/forms/auth";
+import AppLogo from "@/components/global/app-logo";
 
 export default function AuthPage() {
   const t = useTranslations();

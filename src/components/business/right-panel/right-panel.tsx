@@ -1,11 +1,9 @@
 "use client";
 
-import { useAtomValue } from "jotai";
 import Masonry from "react-masonry-css";
-
+import { useAtomValue } from "jotai";
 import { useIsMobile } from "@/hooks/global/use-mobile";
 import { videoTasksAtom } from "@/stores/slices/video-task.store";
-
 import { EmptyInterface } from "../empty-interface";
 import { TaskCard } from "./history-list/history-card";
 

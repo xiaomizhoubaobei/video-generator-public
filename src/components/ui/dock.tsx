@@ -1,14 +1,6 @@
 "use client";
 
-import React, {
-  Children,
-  cloneElement,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-
+import React, { Children, cloneElement, useEffect, useMemo, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -72,7 +64,7 @@ function DockItem({
   const targetSize = useTransform(
     mouseDistance,
     [-distance, 0, distance],
-    [baseItemSize, magnification, baseItemSize]
+    [baseItemSize, magnification, baseItemSize],
   );
   const size = useSpring(targetSize, spring);
 
@@ -95,11 +87,10 @@ function DockItem({
     >
       {Children.map(children, (child) =>
         React.isValidElement(child)
-          ? cloneElement(
-              child as React.ReactElement<{ isHovered?: MotionValue<number> }>,
-              { isHovered }
-            )
-          : child
+          ? cloneElement(child as React.ReactElement<{ isHovered?: MotionValue<number> }>, {
+              isHovered,
+            })
+          : child,
       )}
     </motion.div>
   );
@@ -148,11 +139,7 @@ type DockIconProps = {
 };
 
 function DockIcon({ children, className = "" }: DockIconProps) {
-  return (
-    <div className={`flex items-center justify-center ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`flex items-center justify-center ${className}`}>{children}</div>;
 }
 
 export default function Dock({
@@ -170,16 +157,13 @@ export default function Dock({
 
   const maxHeight = useMemo(
     () => Math.max(dockHeight, magnification + magnification / 2 + 4),
-    [magnification]
+    [magnification],
   );
   const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
   const height = useSpring(heightRow, spring);
 
   return (
-    <motion.div
-      style={{ height, scrollbarWidth: "none" }}
-      className="flex max-w-full items-center"
-    >
+    <motion.div style={{ height, scrollbarWidth: "none" }} className="flex max-w-full items-center">
       <motion.div
         onMouseMove={({ pageX }) => {
           isHovered.set(1);

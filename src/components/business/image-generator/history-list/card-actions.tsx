@@ -1,24 +1,16 @@
 "use client";
 
 import { useState } from "react";
-
 import dayjs from "dayjs";
 import { useSetAtom } from "jotai";
-import {
-  Download,
-  Fullscreen,
-  Loader2,
-  MousePointerClick,
-  Trash2,
-} from "lucide-react";
+import { Download, Fullscreen, Loader2, MousePointerClick, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-
 import { LoaderRenderer } from "@/components/common/loader-renderer";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { removeImageTaskAtom } from "@/stores/slices/image-task.store";
-import { ImageTask } from "@/types/image-task";
+import type { ImageTask } from "@/types/image-task";
 
 interface CardActionsProps {
   task: ImageTask;
@@ -27,12 +19,7 @@ interface CardActionsProps {
   onFullscreen: (imageUrl: string) => void;
 }
 
-export function CardActions({
-  task,
-  className,
-  onImageSelect,
-  onFullscreen,
-}: CardActionsProps) {
+export function CardActions({ task, className, onImageSelect, onFullscreen }: CardActionsProps) {
   const t = useTranslations();
   const [isDownloading, setIsDownloading] = useState(false);
 
@@ -41,7 +28,7 @@ export function CardActions({
 
   const handleOnclick = (
     e: React.MouseEvent<HTMLButtonElement>,
-    type: "use" | "download" | "delete" | "fullscreen"
+    type: "use" | "download" | "delete" | "fullscreen",
   ) => {
     e.stopPropagation();
     e.preventDefault();

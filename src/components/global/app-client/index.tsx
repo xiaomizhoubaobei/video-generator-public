@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-
 import { useAtom } from "jotai";
-
 import SkeletonRenderer from "@/components/common/skeleton-renderer";
 import { fetchVideoModelsAtom } from "@/stores/slices/video-model.store";
 

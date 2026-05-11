@@ -1,11 +1,8 @@
-export type SEOData = {
+export interface SEOData {
   supportLanguages: string[];
   fallbackLanguage: string;
-  languages: Record<
-    string,
-    { title: string; description: string; image: string }
-  >;
-};
+  languages: Record<string, { title: string; description: string; image: string }>;
+}
 
 export const SEO_DATA: SEOData = {
   // TODO: Change to your own support languages

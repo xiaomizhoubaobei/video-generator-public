@@ -1,8 +1,6 @@
 import isEnglish from "is-english";
-
 import { apiKy } from "@/api";
-
-import {
+import type {
   ImageGeneratorFetchResponseType,
   ImageGeneratorSchemaResponseType,
   ImageGeneratorSchemaType,
@@ -11,9 +9,7 @@ import {
 
 export const IMAGE_GENERATOR_API_URL = "302/v2/image/generate?run_async=true";
 
-export async function createImageGeneratorJob(
-  params: Partial<ImageGeneratorSchemaType>
-) {
+export async function createImageGeneratorJob(params: Partial<ImageGeneratorSchemaType>) {
   const { prompt } = params;
   let _params = params;
   if (prompt && !isEnglish(prompt)) {
@@ -31,12 +27,10 @@ export async function createImageGeneratorJob(
 export const IMAGE_GENERATOR_FETCH_API_URL = "302/v2/image/fetch/{task_id}";
 
 export async function fetchImageGeneratorJobStatus(
-  taskId: string
+  taskId: string,
 ): Promise<ImageGeneratorFetchResponseType> {
   try {
-    const response = await apiKy.get(
-      IMAGE_GENERATOR_FETCH_API_URL.replace("{task_id}", taskId)
-    );
+    const response = await apiKy.get(IMAGE_GENERATOR_FETCH_API_URL.replace("{task_id}", taskId));
     return response.json<ImageGeneratorFetchResponseType>();
   } catch (error) {
     console.error("获取任务状态失败", error);
@@ -58,9 +52,7 @@ export async function fetchImageGeneratorJobStatus(
 
 export const TRANSLATE_API_URL = "v1/chat/completions";
 
-export async function translatePrompt(
-  prompt: string
-): Promise<TranslateSchemaResponseType> {
+export async function translatePrompt(prompt: string): Promise<TranslateSchemaResponseType> {
   try {
     const response = await apiKy.post(TRANSLATE_API_URL, {
       json: {

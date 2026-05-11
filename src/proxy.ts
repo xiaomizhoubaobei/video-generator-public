@@ -20,10 +20,8 @@
  *          - /en?lang=zh → 重定向到 /zh
  *          - /page?lang=ja → 重定向到 /ja/page
  */
-import { NextResponse, type NextRequest } from "next/server";
-
 import createMiddleware from "next-intl/middleware";
-
+import { NextResponse, type NextRequest } from "next/server";
 import { GLOBAL } from "./constants";
 import { routing } from "./i18n/routing";
 import { normalizeLanguageCode } from "./utils/language";
@@ -72,9 +70,7 @@ export default function proxy(request: NextRequest) {
   // Then handle regular i18n routing
   const shouldHandle =
     request.nextUrl.pathname === "/" ||
-    new RegExp(`^/(${GLOBAL.LOCALE.SUPPORTED.join("|")})(/.*)?$`).test(
-      request.nextUrl.pathname
-    );
+    new RegExp(`^/(${GLOBAL.LOCALE.SUPPORTED.join("|")})(/.*)?$`).test(request.nextUrl.pathname);
 
   if (!shouldHandle) return;
 

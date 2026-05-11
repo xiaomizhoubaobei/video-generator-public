@@ -1,7 +1,7 @@
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
 import { env } from "@/env";
 
-type ConfigState = {
+interface ConfigState {
   // If your tool is listed in the 302 Tool Marketplace, you will receive the tool's toolInfo when a user creates a tool during login.
   toolInfo?: string;
   // The API key for your tool, which is used to authenticate your tool when making requests to the 302 API.
@@ -14,7 +14,7 @@ type ConfigState = {
   shareCode?: string;
   // Whether to hide the brand.
   hideBrand?: boolean;
-};
+}
 
 export const appConfigAtom = atomWithStorage<ConfigState>(
   "appConfig",
@@ -33,9 +33,9 @@ export const appConfigAtom = atomWithStorage<ConfigState>(
           getItem: () => null,
           setItem: () => null,
           removeItem: () => null,
-        }
+        },
   ),
   {
     getOnInit: true,
-  }
+  },
 );

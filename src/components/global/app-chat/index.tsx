@@ -24,10 +24,8 @@ const CHAT_CONFIG = {
   MAIN_SCRIPT_ID: "sales-smartly-script",
   INSTALL_SCRIPT_ID: "ss-chat",
   CHAT_ELEMENT_ID: "ss-chat-p",
-  MAIN_SCRIPT_URL:
-    "https://assets.salesmartly.com/js/project_177_61_1649762323.js",
-  INSTALL_SCRIPT_URL:
-    "https://assets.salesmartly.com/chat/widget/code/install.js",
+  MAIN_SCRIPT_URL: "https://assets.salesmartly.com/js/project_177_61_1649762323.js",
+  INSTALL_SCRIPT_URL: "https://assets.salesmartly.com/chat/widget/code/install.js",
   LICENSE: "c1f6gdw",
 } as const;
 
@@ -58,12 +56,7 @@ const AppChat = () => {
       resetGlobalVariables();
 
       // Re-run initialization code
-      ((
-        document: Document,
-        scriptTag: string,
-        scriptId: string,
-        window: Window
-      ) => {
+      ((document: Document, scriptTag: string, scriptId: string, window: Window) => {
         // Initialize configuration
         window.__ssc = window.__ssc || {};
         window.__ssc.license = CHAT_CONFIG.LICENSE;
@@ -86,17 +79,11 @@ const AppChat = () => {
     };
 
     // Load installation script
-    const loadInstallScript = (
-      document: Document,
-      scriptTag: string,
-      scriptId: string
-    ) => {
+    const loadInstallScript = (document: Document, scriptTag: string, scriptId: string) => {
       const existingScript = document.getElementsByTagName(scriptTag)[0];
       if (document.getElementById(scriptId)) return;
 
-      const scriptElement = document.createElement(
-        scriptTag
-      ) as HTMLScriptElement;
+      const scriptElement = document.createElement(scriptTag) as HTMLScriptElement;
       scriptElement.id = scriptId;
       scriptElement.src = CHAT_CONFIG.INSTALL_SCRIPT_URL;
       existingScript.parentNode?.insertBefore(scriptElement, existingScript);

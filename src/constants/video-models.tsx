@@ -1,5 +1,4 @@
-import { FC, SVGProps } from "react";
-
+import type { FC, SVGProps } from "react";
 import { Google, Midjourney } from "@lobehub/icons";
 
 // Define model types
@@ -34,18 +33,8 @@ const Genmo: FC<SVGProps<SVGSVGElement>> = (props) => (
         x2="758.152"
         y2="147.336"
       >
-        <stop
-          className="stop0"
-          offset="0"
-          stop-opacity="0.956863"
-          stop-color="rgb(232,25,74)"
-        />
-        <stop
-          className="stop1"
-          offset="1"
-          stop-opacity="1"
-          stop-color="rgb(227,28,72)"
-        />
+        <stop className="stop0" offset="0" stop-opacity="0.956863" stop-color="rgb(232,25,74)" />
+        <stop className="stop1" offset="1" stop-opacity="1" stop-color="rgb(227,28,72)" />
       </linearGradient>
       <linearGradient
         id="Gradient2"
@@ -55,18 +44,8 @@ const Genmo: FC<SVGProps<SVGSVGElement>> = (props) => (
         x2="976.052"
         y2="769.215"
       >
-        <stop
-          className="stop0"
-          offset="0"
-          stop-opacity="0.878431"
-          stop-color="rgb(228,33,75)"
-        />
-        <stop
-          className="stop1"
-          offset="1"
-          stop-opacity="0.894118"
-          stop-color="rgb(249,70,97)"
-        />
+        <stop className="stop0" offset="0" stop-opacity="0.878431" stop-color="rgb(228,33,75)" />
+        <stop className="stop1" offset="1" stop-opacity="0.894118" stop-color="rgb(249,70,97)" />
       </linearGradient>
       <linearGradient
         id="Gradient3"
@@ -76,18 +55,8 @@ const Genmo: FC<SVGProps<SVGSVGElement>> = (props) => (
         x2="679.802"
         y2="1007.52"
       >
-        <stop
-          className="stop0"
-          offset="0"
-          stop-opacity="0.886275"
-          stop-color="rgb(246,164,15)"
-        />
-        <stop
-          className="stop1"
-          offset="1"
-          stop-opacity="0.905882"
-          stop-color="rgb(252,196,41)"
-        />
+        <stop className="stop0" offset="0" stop-opacity="0.886275" stop-color="rgb(246,164,15)" />
+        <stop className="stop1" offset="1" stop-opacity="0.905882" stop-color="rgb(252,196,41)" />
       </linearGradient>
       <linearGradient
         id="Gradient4"
@@ -97,18 +66,8 @@ const Genmo: FC<SVGProps<SVGSVGElement>> = (props) => (
         x2="384.157"
         y2="1256.61"
       >
-        <stop
-          className="stop0"
-          offset="0"
-          stop-opacity="0.87451"
-          stop-color="rgb(42,106,238)"
-        />
-        <stop
-          className="stop1"
-          offset="1"
-          stop-opacity="0.890196"
-          stop-color="rgb(62,133,248)"
-        />
+        <stop className="stop0" offset="0" stop-opacity="0.87451" stop-color="rgb(42,106,238)" />
+        <stop className="stop1" offset="1" stop-opacity="0.890196" stop-color="rgb(62,133,248)" />
       </linearGradient>
       <linearGradient
         id="Gradient5"
@@ -118,18 +77,8 @@ const Genmo: FC<SVGProps<SVGSVGElement>> = (props) => (
         x2="556.84"
         y2="986.93"
       >
-        <stop
-          className="stop0"
-          offset="0"
-          stop-opacity="1"
-          stop-color="rgb(74,115,202)"
-        />
-        <stop
-          className="stop1"
-          offset="1"
-          stop-opacity="1"
-          stop-color="rgb(90,138,210)"
-        />
+        <stop className="stop0" offset="0" stop-opacity="1" stop-color="rgb(74,115,202)" />
+        <stop className="stop1" offset="1" stop-opacity="1" stop-color="rgb(90,138,210)" />
       </linearGradient>
     </defs>
     <path

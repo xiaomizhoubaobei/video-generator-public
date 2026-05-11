@@ -1,4 +1,4 @@
-import { TaskStatus } from "./video-task";
+import type { TaskStatus } from "./video-task";
 
 export interface ImageTask {
   id: string;

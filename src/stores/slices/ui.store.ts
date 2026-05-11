@@ -2,12 +2,12 @@ import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
 
 export type UiStoreActiveTab = "t2v" | "i2v";
-export type UiStore = {
+export interface UiStore {
   activeTab: UiStoreActiveTab;
   t2vVideoModel: string;
   i2vVideoModel: string;
   drawerOpen: boolean;
-};
+}
 
 const STORAGE_KEY = "UI_STATE";
 const defaultState: UiStore = {
@@ -39,7 +39,7 @@ export const uiStoreAtom = atomWithStorage<UiStore>(
   createJSONStorage(() => createStorage()),
   {
     getOnInit: true,
-  }
+  },
 );
 
 export const updateVideoModelAtom = atom(
@@ -49,5 +49,5 @@ export const updateVideoModelAtom = atom(
       ...prev,
       [`${update.type}VideoModel`]: update.value,
     }));
-  }
+  },
 );

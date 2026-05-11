@@ -59,6 +59,4 @@ export const videoModelSchemaResponse = z.object({
   models: z.array(videoModelSchema),
 });
 
-export type VideoModelSchemaResponseType = z.infer<
-  typeof videoModelSchemaResponse
->;
+export type VideoModelSchemaResponseType = z.infer<typeof videoModelSchemaResponse>;

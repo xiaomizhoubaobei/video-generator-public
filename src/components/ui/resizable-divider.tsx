@@ -7,10 +7,7 @@ interface ResizableDividerProps {
   initialLeftWidth?: number;
 }
 
-export function ResizableDivider({
-  onResize,
-  initialLeftWidth = 50,
-}: ResizableDividerProps) {
+export function ResizableDivider({ onResize, initialLeftWidth = 50 }: ResizableDividerProps) {
   const dividerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -29,8 +26,7 @@ export function ResizableDivider({
       if (!container) return;
 
       const containerRect = container.getBoundingClientRect();
-      const leftWidth =
-        ((e.clientX - containerRect.left) / containerRect.width) * 100;
+      const leftWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
 
       // 限制最小宽度为20%
       const clampedWidth = Math.max(20, Math.min(80, leftWidth));
@@ -54,7 +50,7 @@ export function ResizableDivider({
   return (
     <div
       ref={dividerRef}
-      className={`group relative h-full w-px bg-border transition-colors ${
+      className={`group bg-border relative h-full w-px transition-colors ${
         isHovering || isDragging.current ? "bg-primary" : ""
       }`}
       onMouseDown={handleMouseDown}

@@ -1,8 +1,7 @@
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
-import { useForm } from "react-hook-form";
-
 import type { ImageGeneratorSchemaType } from "@/services/image-generator/image-generator.schema";
 import { imageGeneratorSchema } from "@/services/image-generator/image-generator.schema";
 import { imageGeneratorFormAtom } from "@/stores/slices/image-generator.store";
@@ -38,10 +37,7 @@ export function useImageGeneratorForm() {
         message: issue.message,
       }));
 
-      logger.debug(
-        "Formatted validation errors:",
-        JSON.stringify(formattedErrors, null, 2)
-      );
+      logger.debug("Formatted validation errors:", JSON.stringify(formattedErrors, null, 2));
 
       // Set errors
       formattedErrors.forEach((error) => {
@@ -59,9 +55,7 @@ export function useImageGeneratorForm() {
         const firstError = formattedErrors[0];
         const firstErrorField = firstError.path[firstError.path.length - 1];
         if (typeof firstErrorField === "string") {
-          const errorElement = document.querySelector(
-            `[name="${firstErrorField}"]`
-          );
+          const errorElement = document.querySelector(`[name="${firstErrorField}"]`);
           logger.debug("First error field:", firstErrorField);
           if (errorElement instanceof HTMLElement) {
             errorElement.focus();

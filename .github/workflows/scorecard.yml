@@ -11,9 +11,9 @@ on:
   # 确保 Maintained 检查偶尔更新。参见
   # https://github.com/ossf/scorecard/blob/main/docs/checks.md#maintained
   schedule:
-    - cron: '35 9 * * 0'
+    - cron: "35 9 * * 0"
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 # 声明默认权限为只读。
 permissions: read-all

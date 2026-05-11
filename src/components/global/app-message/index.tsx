@@ -18,7 +18,7 @@ const AppMessage = () => {
         ),
         {
           id: successInfo.code.toString(),
-        }
+        },
       );
     };
 
@@ -32,7 +32,7 @@ const AppMessage = () => {
         ),
         {
           id: errorInfo.code.toString(),
-        }
+        },
       );
     };
 

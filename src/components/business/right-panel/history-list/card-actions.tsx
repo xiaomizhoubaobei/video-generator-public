@@ -1,20 +1,19 @@
 "use client";
 
 import { useState } from "react";
-
 import dayjs from "dayjs";
 import { useSetAtom, useStore } from "jotai";
 import { Download, Loader2, SquarePen, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-
 import { LoaderRenderer } from "@/components/common/loader-renderer";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { uiStoreAtom, updateVideoModelAtom } from "@/stores/slices/ui.store";
 import { videoGeneratorFormAtom } from "@/stores/slices/video-generator.store";
 import { removeTaskAtom } from "@/stores/slices/video-task.store";
-import { TaskStatus, VideoTask } from "@/types/video-task";
+import type { VideoTask } from "@/types/video-task";
+import { TaskStatus } from "@/types/video-task";
 
 interface CardActionsProps {
   task: VideoTask;
@@ -103,10 +102,7 @@ export function CardActions({ task, className }: CardActionsProps) {
         variant="ghost"
         size="icon"
         title={t("re-edit")}
-        disabled={
-          task.status !== TaskStatus.COMPLETED &&
-          task.status !== TaskStatus.FAILED
-        }
+        disabled={task.status !== TaskStatus.COMPLETED && task.status !== TaskStatus.FAILED}
       >
         <SquarePen className="text-primary h-4 w-4" />
       </Button>
@@ -131,12 +127,7 @@ export function CardActions({ task, className }: CardActionsProps) {
         />
       </Button>
 
-      <Button
-        onClick={handleDelete}
-        variant="ghost"
-        size="icon"
-        title={t("delete")}
-      >
+      <Button onClick={handleDelete} variant="ghost" size="icon" title={t("delete")}>
         <Trash2 className="text-destructive h-4 w-4" />
       </Button>
     </div>

@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { useQueryClient } from "@tanstack/react-query";
-import { Atom, useAtomValue } from "jotai";
-
+import type { Atom } from "jotai";
+import { useAtomValue } from "jotai";
 import { createScopedLogger } from "@/utils";
 
 interface Task {
@@ -24,10 +23,7 @@ const logger = createScopedLogger("useTaskRecovery");
  * Generic task recovery hook
  * Recovers unfinished task polling on application startup
  */
-export function useTaskRecovery({
-  pendingTasksAtom,
-  taskType,
-}: UseTaskRecoveryOptions) {
+export function useTaskRecovery({ pendingTasksAtom, taskType }: UseTaskRecoveryOptions) {
   const pendingTasks = useAtomValue(pendingTasksAtom);
   const queryClient = useQueryClient();
   const [hasRecovered, setHasRecovered] = useState(false);
@@ -39,7 +35,7 @@ export function useTaskRecovery({
 
     if (pendingTasks.length > 0) {
       logger.info(
-        `Detected ${pendingTasks.length} unfinished ${taskType} tasks, starting recovery polling`
+        `Detected ${pendingTasks.length} unfinished ${taskType} tasks, starting recovery polling`,
       );
 
       pendingTasks.forEach((task) => {

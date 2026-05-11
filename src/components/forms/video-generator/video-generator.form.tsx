@@ -3,7 +3,6 @@
 import { useAtom, useAtomValue } from "jotai";
 import { useTranslations } from "next-intl";
 import { match, P } from "ts-pattern";
-
 import { ImageUploader } from "@/components/business/image-uploader/image-uploader";
 import { T2VExamples } from "@/components/business/left-panel/t2v-examples";
 import FormGenerator from "@/components/common/form-generator";
@@ -37,8 +36,7 @@ export function VideoGeneratorForm() {
   const { watch, register, setValue, errors } = useVideoGeneratorForm();
 
   // Get current model parameters
-  const currentModel =
-    uiStore.activeTab === "t2v" ? uiStore.t2vVideoModel : uiStore.i2vVideoModel;
+  const currentModel = uiStore.activeTab === "t2v" ? uiStore.t2vVideoModel : uiStore.i2vVideoModel;
 
   const modelParameters = getModelByName(currentModel)?.parameters || [];
 
@@ -57,13 +55,10 @@ export function VideoGeneratorForm() {
                 <ImageUploader
                   label={t(`${isOnlyOne ? "only_image" : field}.label`)}
                   key={field}
-                  onUpload={(imageUrl) =>
-                    setValue(field as FormFieldType, imageUrl)
-                  }
+                  onUpload={(imageUrl) => setValue(field as FormFieldType, imageUrl)}
                   uploadedImageUrl={
-                    videoGeneratorFormState[
-                      field as "image1" | "image2" | "image3" | "image4"
-                    ] ?? ""
+                    videoGeneratorFormState[field as "image1" | "image2" | "image3" | "image4"] ??
+                    ""
                   }
                   onRemove={() => setValue(field as FormFieldType, "")}
                 />
@@ -220,7 +215,7 @@ export function VideoGeneratorForm() {
                 durationOptions?.map((opt) => ({
                   ...opt,
                   disabled: opt.value === "8",
-                })) || durationOptions
+                })) || durationOptions,
             )
             .with(
               {
@@ -231,7 +226,7 @@ export function VideoGeneratorForm() {
                 durationOptions?.map((opt) => ({
                   ...opt,
                   disabled: opt.value === "8",
-                })) || durationOptions
+                })) || durationOptions,
             )
             .otherwise(() => durationOptions);
 
@@ -272,7 +267,7 @@ export function VideoGeneratorForm() {
                 resolutionOptions?.map((opt) => ({
                   ...opt,
                   disabled: opt.value !== "720p",
-                })) || resolutionOptions
+                })) || resolutionOptions,
             )
             .with(
               { model: "vidu-1.5", duration: "4" },
@@ -280,7 +275,7 @@ export function VideoGeneratorForm() {
                 resolutionOptions?.map((opt) => ({
                   ...opt,
                   disabled: false,
-                })) || resolutionOptions
+                })) || resolutionOptions,
             )
             .with(
               { model: "vidu-2.0", duration: "8" },
@@ -288,7 +283,7 @@ export function VideoGeneratorForm() {
                 resolutionOptions?.map((opt) => ({
                   ...opt,
                   disabled: opt.value !== "720p",
-                })) || resolutionOptions
+                })) || resolutionOptions,
             )
             .with(
               { model: "vidu-2.0", duration: "4" },
@@ -296,7 +291,7 @@ export function VideoGeneratorForm() {
                 resolutionOptions?.map((opt) => ({
                   ...opt,
                   disabled: false,
-                })) || resolutionOptions
+                })) || resolutionOptions,
             )
             .otherwise(() => resolutionOptions);
 
@@ -319,13 +314,11 @@ export function VideoGeneratorForm() {
         }
 
         if (fieldName === "aspect_ratio") {
-          const aspectRatioOptions = param.range?.list?.options?.map(
-            (option) => ({
-              value: `${option}`,
-              label: `${option}`,
-              id: `${option}`,
-            })
-          );
+          const aspectRatioOptions = param.range?.list?.options?.map((option) => ({
+            value: `${option}`,
+            label: `${option}`,
+            id: `${option}`,
+          }));
           return (
             <FormGenerator
               key={fieldName}
@@ -393,13 +386,11 @@ export function VideoGeneratorForm() {
         }
 
         if (fieldName === "effect_scene") {
-          const effectSceneOptions = param.range?.list?.options?.map(
-            (option) => ({
-              value: `${option}`,
-              label: `${option}`,
-              id: `${option}`,
-            })
-          );
+          const effectSceneOptions = param.range?.list?.options?.map((option) => ({
+            value: `${option}`,
+            label: `${option}`,
+            id: `${option}`,
+          }));
           return (
             <FormGenerator
               key={fieldName}
@@ -467,13 +458,11 @@ export function VideoGeneratorForm() {
         }
 
         if (fieldName === "pikaffect") {
-          const pikaffectOptions = param.range?.list?.options?.map(
-            (option) => ({
-              value: `${option}`,
-              label: `${option}`,
-              id: `${option}`,
-            })
-          );
+          const pikaffectOptions = param.range?.list?.options?.map((option) => ({
+            value: `${option}`,
+            label: `${option}`,
+            id: `${option}`,
+          }));
           return (
             <FormGenerator
               key={fieldName}
@@ -493,13 +482,11 @@ export function VideoGeneratorForm() {
         }
 
         if (fieldName === "motion_model") {
-          const motionModelOptions = param.range?.list?.options?.map(
-            (option) => ({
-              value: `${option}`,
-              label: `${option}`,
-              id: `${option}`,
-            })
-          );
+          const motionModelOptions = param.range?.list?.options?.map((option) => ({
+            value: `${option}`,
+            label: `${option}`,
+            id: `${option}`,
+          }));
           return (
             <FormGenerator
               key={fieldName}
@@ -537,16 +524,14 @@ export function VideoGeneratorForm() {
             "14": "Ethan",
           };
 
-          const lipSyncTtsSpeakerIdOptions = param.range?.list?.options?.map(
-            (option) => {
-              const optionStr = String(option);
-              return {
-                value: optionStr,
-                label: voiceNameMap[optionStr] || optionStr,
-                id: optionStr,
-              };
-            }
-          );
+          const lipSyncTtsSpeakerIdOptions = param.range?.list?.options?.map((option) => {
+            const optionStr = String(option);
+            return {
+              value: optionStr,
+              label: voiceNameMap[optionStr] || optionStr,
+              id: optionStr,
+            };
+          });
           return (
             <FormGenerator
               key={fieldName}
