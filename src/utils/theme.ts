@@ -3,7 +3,7 @@ import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension
 import { EMPTY_THEME, THEME_COOKIE_NAME } from "@/constants";
 
 export const getServerTheme = async (
-  cookies: () => Promise<ReadonlyRequestCookies>
+  cookies: () => Promise<ReadonlyRequestCookies>,
 ): Promise<string> => {
   const cookieStore = await cookies();
   const theme = getCookie(THEME_COOKIE_NAME, {

@@ -1,10 +1,8 @@
 import { DotPulse, LineSpinner, Ring, Waveform } from "ldrs/react";
-
 import "ldrs/react/DotPulse.css";
 import "ldrs/react/LineSpinner.css";
 import "ldrs/react/Ring.css";
 import "ldrs/react/Waveform.css";
-
 import { match } from "ts-pattern";
 
 interface LdrsLoaderProps {
@@ -23,17 +21,11 @@ export function LdrsLoader({
   color = "currentColor",
 }: LdrsLoaderProps) {
   return match(type)
-    .with("dot-pulse", () => (
-      <DotPulse size={size} speed={speed} color={color} />
-    ))
+    .with("dot-pulse", () => <DotPulse size={size} speed={speed} color={color} />)
     .with("line-spinner", () => (
       <LineSpinner size={size} speed={speed} color={color} stroke={stroke} />
     ))
-    .with("waveform", () => (
-      <Waveform size={size} speed={speed} color={color} />
-    ))
-    .with("ring", () => (
-      <Ring size={size} speed={speed} color={color} stroke={stroke} />
-    ))
+    .with("waveform", () => <Waveform size={size} speed={speed} color={color} />)
+    .with("ring", () => <Ring size={size} speed={speed} color={color} stroke={stroke} />)
     .exhaustive();
 }

@@ -18,9 +18,7 @@ export const imageGeneratorSchemaResponse = z.object({
   created_at: z.string(),
 });
 
-export type ImageGeneratorSchemaResponseType = z.infer<
-  typeof imageGeneratorSchemaResponse
->;
+export type ImageGeneratorSchemaResponseType = z.infer<typeof imageGeneratorSchemaResponse>;
 
 export const imageGeneratorFetchResponseSchema = z.object({
   model: z.string(),
@@ -45,9 +43,7 @@ export const imageGeneratorFetchResponseSchema = z.object({
   webhook: z.string(),
 });
 
-export type ImageGeneratorFetchResponseType = z.infer<
-  typeof imageGeneratorFetchResponseSchema
->;
+export type ImageGeneratorFetchResponseType = z.infer<typeof imageGeneratorFetchResponseSchema>;
 
 export const translateSchema = z.object({
   model: z.string(),
@@ -60,6 +56,4 @@ export const translateSchemaResponse = z.object({
   output: z.string(),
 });
 
-export type TranslateSchemaResponseType = z.infer<
-  typeof translateSchemaResponse
->;
+export type TranslateSchemaResponseType = z.infer<typeof translateSchemaResponse>;

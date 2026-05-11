@@ -1,18 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-
 import { ImageUp, Loader2, Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useIsMobile } from "@/hooks/global/use-mobile";
 import { useUnifiedFileUpload } from "@/hooks/global/use-unified-file-upload";
 import { cn, convertToPng } from "@/lib/utils";
 import { createScopedLogger } from "@/utils/logger";
-
 import { ImageGenerator } from "../image-generator/image-generator";
 import { ImageUploaderDock } from "./image-uploader-dock";
 
@@ -51,31 +48,27 @@ export function ImageUploader({
 
       if (file.size > MAX_FILE_SIZE) {
         toast.error(t("image_uploader.error.file_too_large"));
-        logger.error(
-          `File size ${file.size} exceeds limit of ${MAX_FILE_SIZE}`
-        );
+        logger.error(`File size ${file.size} exceeds limit of ${MAX_FILE_SIZE}`);
         return;
       }
 
       try {
-        const fileToUpload =
-          file.type !== "image/png" ? await convertToPng(file) : file;
+        const fileToUpload = file.type !== "image/png" ? await convertToPng(file) : file;
         const [uploadedFile] = await upload([fileToUpload]);
         onUpload(uploadedFile.url);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : "Unknown error occurred";
+        const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
 
         toast.error(t("image_uploader.error.upload_failed"));
         logger.error("Upload failed:", errorMessage);
       }
     },
-    [t, upload, onUpload]
+    [t, upload, onUpload],
   );
 
   const handleReupload = useCallback(() => {
     const fileInput = document.querySelector(
-      'input[type="file"][accept="image/*"].hidden'
+      'input[type="file"][accept="image/*"].hidden',
     ) as HTMLInputElement | null;
     if (fileInput) {
       fileInput.click();
@@ -97,7 +90,7 @@ export function ImageUploader({
         }
       }
     },
-    [handleImageUpload]
+    [handleImageUpload],
   );
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -148,16 +141,12 @@ export function ImageUploader({
             "group border-border bg-muted relative flex max-h-[400px] min-h-[300px] items-center justify-center rounded-lg border border-dashed p-2",
             uploadedImageUrl
               ? "border-primary"
-              : "hover:border-primary transition-all duration-100"
+              : "hover:border-primary transition-all duration-100",
           )}
         >
           {uploadedImageUrl ? (
             <>
-              <img
-                className="h-full w-full object-contain"
-                src={uploadedImageUrl}
-                alt="Image"
-              />
+              <img className="h-full w-full object-contain" src={uploadedImageUrl} alt="Image" />
 
               <ImageUploaderDock
                 onUpload={handleReupload}
@@ -165,7 +154,7 @@ export function ImageUploader({
                 onRemove={onRemove}
                 className={cn(
                   "absolute opacity-0 transition-opacity duration-300 group-hover:opacity-100",
-                  isMobile ? "opacity-100" : ""
+                  isMobile ? "opacity-100" : "",
                 )}
               />
             </>
@@ -224,11 +213,7 @@ export function ImageUploader({
         />
       </div>
 
-      <ImageGenerator
-        open={open}
-        onOpenChange={setOpen}
-        onImageSelect={handleImageSelect}
-      />
+      <ImageGenerator open={open} onOpenChange={setOpen} onImageSelect={handleImageSelect} />
     </>
   );
 }

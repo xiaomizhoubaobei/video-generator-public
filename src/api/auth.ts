@@ -1,4 +1,5 @@
 "use client";
+
 import ky from "ky";
 import { env } from "@/env";
 import { languageAtom, store } from "@/stores";

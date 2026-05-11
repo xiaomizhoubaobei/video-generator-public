@@ -4,10 +4,7 @@
     "defaultModel": "${ai_model}",
     "maxSteps": 200,
     "temperature": 0.3,
-    "instructions": [
-      "/srv/docs/cnb-api-reference.md",
-      "/srv/docs/cnb-api-quickref.md"
-    ],
+    "instructions": ["/srv/docs/cnb-api-reference.md", "/srv/docs/cnb-api-quickref.md"],
     "providers": {
       "openai": {
         "apiKey": "${CNB_TOKEN}",

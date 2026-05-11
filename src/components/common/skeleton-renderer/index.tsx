@@ -1,9 +1,9 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { isOutsideDeployMode } from "@/utils/302";
 
-type Props = {
+interface Props {
   element: "APP_CLIENT" | "EXAMPLE";
-};
+}
 
 const SkeletonRenderer = ({ element }: Props) => {
   if (element === "APP_CLIENT") {
@@ -11,9 +11,7 @@ const SkeletonRenderer = ({ element }: Props) => {
       <div className="flex h-screen flex-col items-center">
         {/* Header skeletons */}
         <div className="flex w-full justify-end gap-x-4 p-4">
-          {!isOutsideDeployMode() && (
-            <Skeleton className="size-6 rounded-full" />
-          )}
+          {!isOutsideDeployMode() && <Skeleton className="size-6 rounded-full" />}
           <Skeleton className="size-6 rounded-full" />
           <Skeleton className="size-6 rounded-full" />
         </div>

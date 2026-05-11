@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { useAtomValue } from "jotai";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-
 import { ImageModelSelect } from "@/components/business/image-generator/image-model-select";
 import { LdrsLoader } from "@/components/business/ldrs-loader";
 import FormGenerator from "@/components/common/form-generator";
@@ -122,13 +120,7 @@ export function ImageGeneratorForm() {
         disabled={!isFormValid || isGeneratingImage}
       >
         <LoaderRenderer
-          status={
-            isGeneratingImage
-              ? "generating_image"
-              : isFormValid
-                ? "ready"
-                : "not_ready"
-          }
+          status={isGeneratingImage ? "generating_image" : isFormValid ? "ready" : "not_ready"}
           statuses={{
             ready: { icon: null, text: t("btn.ready_to_generate") },
             not_ready: { icon: null, text: t("btn.ready_to_generate") },

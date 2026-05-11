@@ -1,8 +1,8 @@
 "use client";
 
+import type { FormEvent } from "react";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import type { FormEvent } from "react";
 import FormGenerator from "@/components/common/form-generator";
 import { LoaderRenderer } from "@/components/common/loader-renderer";
 import { Button } from "@/components/ui/button";
@@ -19,10 +19,7 @@ const SignInForm = () => {
   };
 
   return (
-    <form
-      className="mt-4 flex w-full max-w-sm flex-col items-center gap-3"
-      onSubmit={handleSubmit}
-    >
+    <form className="mt-4 flex w-full max-w-sm flex-col items-center gap-3" onSubmit={handleSubmit}>
       {FORM_CONSTANTS.signInForm.slice(0, 1).map((field) => {
         return (
           <FormGenerator

@@ -1,18 +1,9 @@
 "use client";
 
 import { useState } from "react";
-
-import {
-  flip,
-  offset,
-  shift,
-  useFloating,
-  useHover,
-  useInteractions,
-} from "@floating-ui/react";
+import { flip, offset, shift, useFloating, useHover, useInteractions } from "@floating-ui/react";
 import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
-
 import { CommandItem } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
 
@@ -88,14 +79,10 @@ export function CommandItemWithTooltip({
           <div
             className={cn(
               "flex h-4 w-4 items-center justify-center rounded border",
-              isSelected
-                ? "border-primary bg-primary"
-                : "border-muted-foreground"
+              isSelected ? "border-primary bg-primary" : "border-muted-foreground",
             )}
           >
-            {isSelected && (
-              <Check className="text-primary-foreground h-3 w-3" />
-            )}
+            {isSelected && <Check className="text-primary-foreground h-3 w-3" />}
           </div>
           <span>{model.display_name}</span>
         </div>

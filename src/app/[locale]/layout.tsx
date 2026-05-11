@@ -9,24 +9,20 @@ import AppTheme from "@/components/global/app-theme";
 import AppTooltip from "@/components/global/app-tooltip";
 import { GLOBAL, SEO_DATA } from "@/constants";
 import { env } from "@/env";
-
 import "@/styles/globals.css";
-
+import type { ReactNode } from "react";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { cookies, headers } from "next/headers";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next/types";
-import type { ReactNode } from "react";
-
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-
 import AppQeury from "@/components/global/app-query";
 import { getServerTheme } from "@/utils/theme";
 
 // SEO metadata
 export async function generateMetadata(
   { params }: { params: Promise<{ locale: string }> },
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { locale } = await params;
   const hostname = (await headers()).get("host") ?? "";
@@ -43,9 +39,7 @@ export async function generateMetadata(
   const baseUrl = `https://${hostname}`;
 
   // Generate URL mapping for other language versions
-  const languageAlternates = GLOBAL.LOCALE.SUPPORTED.reduce<
-    Record<string, string>
-  >((acc, lang) => {
+  const languageAlternates = GLOBAL.LOCALE.SUPPORTED.reduce<Record<string, string>>((acc, lang) => {
     if (lang !== locale) {
       acc[lang] = `/${lang}`;
     }
@@ -82,11 +76,7 @@ export default async function RootLayout({
   // Ensure theme is set on server side, to avoid hydration error
   const theme = await getServerTheme(cookies);
 
-  if (
-    !GLOBAL.LOCALE.SUPPORTED.includes(
-      locale as (typeof GLOBAL.LOCALE.SUPPORTED)[number]
-    )
-  ) {
+  if (!GLOBAL.LOCALE.SUPPORTED.includes(locale as (typeof GLOBAL.LOCALE.SUPPORTED)[number])) {
     notFound();
   }
 
@@ -97,10 +87,7 @@ export default async function RootLayout({
       <head>
         {/* Performance Analysis Tool */}
         {env.NODE_ENV === "development" && (
-          <script
-            src="https://unpkg.com/react-scan/dist/auto.global.js"
-            async
-          ></script>
+          <script src="https://unpkg.com/react-scan/dist/auto.global.js" async></script>
         )}
       </head>
       <body className="flex h-screen flex-col overflow-hidden antialiased">

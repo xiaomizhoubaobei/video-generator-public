@@ -14,8 +14,7 @@ interface Logger {
 }
 
 let currentLevel: DebugLevel =
-  env.NEXT_PUBLIC_LOG_LEVEL ??
-  (env.NODE_ENV === "production" ? "info" : "debug");
+  env.NEXT_PUBLIC_LOG_LEVEL ?? (env.NODE_ENV === "production" ? "info" : "debug");
 
 const isWorker = "HTMLRewriter" in globalThis;
 const supportsColor = !isWorker;
@@ -41,10 +40,7 @@ export function createScopedLogger(scope: string): Logger {
 }
 
 function setLevel(level: DebugLevel) {
-  if (
-    (level === "trace" || level === "debug") &&
-    env.NODE_ENV === "production"
-  ) {
+  if ((level === "trace" || level === "debug") && env.NODE_ENV === "production") {
     return;
   }
 
@@ -91,11 +87,7 @@ function log(level: DebugLevel, scope: string | undefined, messages: any[]) {
     styles.push("", scopeStyles);
   }
 
-  console.log(
-    `%c${level.toUpperCase()}${scope ? `%c %c${scope}` : ""}`,
-    ...styles,
-    allMessages
-  );
+  console.log(`%c${level.toUpperCase()}${scope ? `%c %c${scope}` : ""}`, ...styles, allMessages);
 }
 
 function getLabelStyles(color: string, textColor: string) {

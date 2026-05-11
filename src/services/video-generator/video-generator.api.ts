@@ -1,8 +1,6 @@
 import { isUndefined } from "es-toolkit";
-
 import { apiKy } from "@/api";
-
-import {
+import type {
   VideoGeneratorFetchResponseType,
   VideoGeneratorSchemaResponseType,
   VideoGeneratorSchemaType,
@@ -10,17 +8,13 @@ import {
 
 export const VIDEO_GENERATOR_API_URL = "302/v2/video/create";
 
-export async function createVideoGeneratorJob(
-  params: Partial<VideoGeneratorSchemaType>
-) {
+export async function createVideoGeneratorJob(params: Partial<VideoGeneratorSchemaType>) {
   const { model, image1, image2, image3, image4, ...restParams } = params;
 
   const _params = {
     ...restParams,
     model,
-    image: [image1, image2, image3, image4].filter(
-      (image) => !isUndefined(image) && image !== ""
-    ),
+    image: [image1, image2, image3, image4].filter((image) => !isUndefined(image) && image !== ""),
     sound_effect_switch: params.sound_effect_switch ? 1 : 0,
   };
 
@@ -39,12 +33,10 @@ export async function createVideoGeneratorJob(
 export const VIDEO_GENERATOR_FETCH_API_URL = "302/v2/video/fetch/{task_id}";
 
 export async function fetchVideoGeneratorJobStatus(
-  taskId: string
+  taskId: string,
 ): Promise<VideoGeneratorFetchResponseType> {
   try {
-    const response = await apiKy.get(
-      VIDEO_GENERATOR_FETCH_API_URL.replace("{task_id}", taskId)
-    );
+    const response = await apiKy.get(VIDEO_GENERATOR_FETCH_API_URL.replace("{task_id}", taskId));
     return response.json<VideoGeneratorFetchResponseType>();
   } catch (error) {
     console.error("获取任务状态失败", error);

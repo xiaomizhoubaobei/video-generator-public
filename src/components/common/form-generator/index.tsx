@@ -1,11 +1,4 @@
 import { useCallback, useEffect } from "react";
-
-import {
-  ErrorMessage,
-  type FieldValuesFromFieldErrors,
-} from "@hookform/error-message";
-import { BrushCleaning, HelpCircle, Loader2 } from "lucide-react";
-import { useTranslations } from "next-intl";
 import type {
   FieldErrors,
   FieldName,
@@ -14,7 +7,9 @@ import type {
   UseFormRegister,
   UseFormSetValue,
 } from "react-hook-form";
-
+import { ErrorMessage, type FieldValuesFromFieldErrors } from "@hookform/error-message";
+import { BrushCleaning, HelpCircle, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { LoaderRenderer } from "@/components/common/loader-renderer";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -30,25 +25,19 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-
 import HostRenderer from "../host-renderer";
 
-type TextareaAction = {
+interface TextareaAction {
   label: string;
   loadingLabel?: string;
   onClick: () => void;
   position: "bottom-left" | "bottom-right";
   isPending?: boolean;
-};
+}
 
-type TextareaConfig = {
+interface TextareaConfig {
   wrapperClassName?: string;
   maxLength?: number;
   showCount?: boolean;
@@ -56,20 +45,20 @@ type TextareaConfig = {
   action?: TextareaAction;
   resize?: boolean;
   tooltip?: string;
-};
+}
 
-type LabelConfig = {
+interface LabelConfig {
   top?: string;
   bottom?: string;
-};
+}
 
-type StepLabel = {
+interface StepLabel {
   value: number;
   topLabel?: string;
   bottomLabel?: string;
-};
+}
 
-type SliderConfig = {
+interface SliderConfig {
   min: number;
   max: number;
   step?: number;
@@ -82,9 +71,9 @@ type SliderConfig = {
   tooltip?: string;
   formatValue?: (value: number) => string;
   showCurrentValue?: boolean;
-};
+}
 
-export type FormGeneratorProps<T extends FieldValues> = {
+export interface FormGeneratorProps<T extends FieldValues> {
   id: string;
   inputType: "select" | "input" | "textarea" | "checkbox" | "switch" | "slider";
   name: Path<T>;
@@ -102,7 +91,7 @@ export type FormGeneratorProps<T extends FieldValues> = {
   textareaConfig?: TextareaConfig;
   defaultValue?: string;
   sliderConfig?: SliderConfig;
-};
+}
 
 export type FormGeneratorType<T extends FieldValues> = Omit<
   FormGeneratorProps<T>,
@@ -143,9 +132,7 @@ const FormGenerator = <T extends FieldValues>({
   const renderErrorMessage = () => (
     <ErrorMessage
       errors={errors}
-      name={
-        name as unknown as FieldName<FieldValuesFromFieldErrors<FieldErrors<T>>>
-      }
+      name={name as unknown as FieldName<FieldValuesFromFieldErrors<FieldErrors<T>>>}
       render={({ message }) =>
         message !== "Required" && (
           <p className="mt-2 text-red-400">
@@ -166,10 +153,7 @@ const FormGenerator = <T extends FieldValues>({
         type={type}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className={cn(
-          "bg-themeBlack border-themeGray text-themeTextGray",
-          className
-        )}
+        className={cn("bg-themeBlack border-themeGray text-themeTextGray", className)}
         {...register(name)}
       />
       {renderErrorMessage()}
@@ -181,8 +165,7 @@ const FormGenerator = <T extends FieldValues>({
 
     // Check if current value is valid, if not use first option as default
     const isValueValid = options?.some((opt) => opt.value === watchSelect);
-    const safeValue =
-      !isValueValid && options?.length ? options[0].value : watchSelect;
+    const safeValue = !isValueValid && options?.length ? options[0].value : watchSelect;
 
     return (
       <Label className="flex flex-col gap-2">
@@ -203,9 +186,7 @@ const FormGenerator = <T extends FieldValues>({
                 value={option.value}
                 key={option.id}
                 disabled={option.disabled}
-                className={
-                  option.disabled ? "cursor-not-allowed opacity-50" : ""
-                }
+                className={option.disabled ? "cursor-not-allowed opacity-50" : ""}
               >
                 {option.label}
               </SelectItem>
@@ -266,21 +247,17 @@ const FormGenerator = <T extends FieldValues>({
                 onClick={textareaConfig.action?.onClick}
                 className={cn(
                   "h-8 px-3 text-xs",
-                  textareaConfig.action?.isPending && "cursor-not-allowed"
+                  textareaConfig.action?.isPending && "cursor-not-allowed",
                 )}
                 disabled={textareaConfig.action?.isPending}
               >
                 <LoaderRenderer
-                  status={
-                    textareaConfig.action?.isPending ? "loading" : "default"
-                  }
+                  status={textareaConfig.action?.isPending ? "loading" : "default"}
                   statuses={{
                     default: { icon: null, text: textareaConfig.action?.label },
                     loading: {
                       icon: <Loader2 className="h-4 w-4 animate-spin" />,
-                      text:
-                        textareaConfig.action?.loadingLabel ||
-                        textareaConfig.action?.label,
+                      text: textareaConfig.action?.loadingLabel || textareaConfig.action?.label,
                     },
                   }}
                 />
@@ -301,21 +278,17 @@ const FormGenerator = <T extends FieldValues>({
                 onClick={textareaConfig.action?.onClick}
                 className={cn(
                   "h-8 px-3 text-xs",
-                  textareaConfig.action?.isPending && "cursor-not-allowed"
+                  textareaConfig.action?.isPending && "cursor-not-allowed",
                 )}
                 disabled={textareaConfig.action?.isPending}
               >
                 <LoaderRenderer
-                  status={
-                    textareaConfig.action?.isPending ? "loading" : "default"
-                  }
+                  status={textareaConfig.action?.isPending ? "loading" : "default"}
                   statuses={{
                     default: { icon: null, text: textareaConfig.action?.label },
                     loading: {
                       icon: <Loader2 className="h-4 w-4 animate-spin" />,
-                      text:
-                        textareaConfig.action?.loadingLabel ||
-                        textareaConfig.action?.label,
+                      text: textareaConfig.action?.loadingLabel || textareaConfig.action?.label,
                     },
                   }}
                 />
@@ -347,17 +320,15 @@ const FormGenerator = <T extends FieldValues>({
           className={cn(
             "focus-within:outline-primary flex flex-col overflow-hidden rounded-md border focus-within:outline-1",
             textareaConfig?.resize ? "resize-y" : "resize-none",
-            textareaConfig?.showCount || textareaConfig?.action
-              ? "min-h-28"
-              : "",
-            textareaConfig?.wrapperClassName
+            textareaConfig?.showCount || textareaConfig?.action ? "min-h-28" : "",
+            textareaConfig?.wrapperClassName,
           )}
         >
           <Textarea
             className={cn(
               "w-full flex-1 resize-none rounded-none border-0 bg-transparent",
               "focus-visible:ring-0 focus-visible:ring-offset-0",
-              className
+              className,
             )}
             id={`input-${id}`}
             placeholder={placeholder}
@@ -400,20 +371,13 @@ const FormGenerator = <T extends FieldValues>({
           setValue(name, checked as any);
         }
       },
-      [watchSwitch, name, setValue]
+      [watchSwitch, name, setValue],
     );
 
     return (
-      <Label
-        className="flex items-center justify-between gap-2"
-        htmlFor={`switch-${id}`}
-      >
+      <Label className="flex items-center justify-between gap-2" htmlFor={`switch-${id}`}>
         <span className="flex-shrink-0">{label}</span>
-        <Switch
-          id={`switch-${id}`}
-          checked={watchSwitch}
-          onCheckedChange={handleCheckedChange}
-        />
+        <Switch id={`switch-${id}`} checked={watchSwitch} onCheckedChange={handleCheckedChange} />
       </Label>
     );
   }, [name, label, id, watch, setValue]);
@@ -422,13 +386,10 @@ const FormGenerator = <T extends FieldValues>({
     const watchSlider = watch(name, 0) as number;
 
     const hasDoubleLabel =
-      (typeof sliderConfig?.minLabel === "object" &&
-        sliderConfig?.minLabel.bottom) ||
-      (typeof sliderConfig?.maxLabel === "object" &&
-        sliderConfig?.maxLabel.bottom);
+      (typeof sliderConfig?.minLabel === "object" && sliderConfig?.minLabel.bottom) ||
+      (typeof sliderConfig?.maxLabel === "object" && sliderConfig?.maxLabel.bottom);
 
-    const hasStepLabels =
-      !!sliderConfig?.stepLabels && sliderConfig.stepLabels.length > 0;
+    const hasStepLabels = !!sliderConfig?.stepLabels && sliderConfig.stepLabels.length > 0;
 
     const renderStepLabels = () => {
       if (!sliderConfig?.stepLabels) return null;
@@ -451,15 +412,9 @@ const FormGenerator = <T extends FieldValues>({
             }
 
             return (
-              <div
-                key={step.value}
-                className="absolute flex flex-col items-center"
-                style={style}
-              >
+              <div key={step.value} className="absolute flex flex-col items-center" style={style}>
                 {step.topLabel && (
-                  <span className="text-muted-foreground text-xs">
-                    {step.topLabel}
-                  </span>
+                  <span className="text-muted-foreground text-xs">{step.topLabel}</span>
                 )}
                 {step.bottomLabel && (
                   <div className="text-muted-foreground absolute top-8 text-xs">
@@ -485,50 +440,29 @@ const FormGenerator = <T extends FieldValues>({
 
       if (typeof label === "string") {
         return (
-          <div
-            className={cn(
-              "min-w-[40px] text-sm",
-              hasDoubleLabel && "self-center"
-            )}
-          >
-            {label}
-          </div>
+          <div className={cn("min-w-[40px] text-sm", hasDoubleLabel && "self-center")}>{label}</div>
         );
       }
 
       return (
         <div className="flex min-w-[40px] flex-col items-center">
           {label.top && <div className="text-sm">{label.top}</div>}
-          {label.bottom && (
-            <div className="text-muted-foreground text-xs">{label.bottom}</div>
-          )}
+          {label.bottom && <div className="text-muted-foreground text-xs">{label.bottom}</div>}
         </div>
       );
     };
 
     return (
-      <div
-        className={cn(
-          "flex w-full flex-col",
-          hasStepLabels ? "gap-6" : "gap-2"
-        )}
-      >
+      <div className={cn("flex w-full flex-col", hasStepLabels ? "gap-6" : "gap-2")}>
         {label && renderLabel()}
         <div className="flex items-center gap-4">
           {sliderConfig?.showMinLabel && (
-            <div
-              className={cn(
-                "flex",
-                hasDoubleLabel ? "h-[40px] items-start" : "items-center"
-              )}
-            >
+            <div className={cn("flex", hasDoubleLabel ? "h-[40px] items-start" : "items-center")}>
               {renderEdgeLabel(sliderConfig.minLabel || `${sliderConfig?.min}`)}
             </div>
           )}
 
-          <div
-            className={cn("relative flex-1", hasDoubleLabel && "self-center")}
-          >
+          <div className={cn("relative flex-1", hasDoubleLabel && "self-center")}>
             {sliderConfig?.fixedValues && (
               <div className="absolute -top-6 flex w-full justify-between">
                 {sliderConfig.fixedValues.map((value) => (
@@ -547,9 +481,7 @@ const FormGenerator = <T extends FieldValues>({
                   transform: "translateX(-50%)",
                 }}
               >
-                {sliderConfig.formatValue
-                  ? sliderConfig.formatValue(watchSlider)
-                  : watchSlider}
+                {sliderConfig.formatValue ? sliderConfig.formatValue(watchSlider) : watchSlider}
               </div>
             )}
 
@@ -557,10 +489,7 @@ const FormGenerator = <T extends FieldValues>({
               value={[watchSlider]}
               min={sliderConfig?.min || 0}
               max={sliderConfig?.max || 100}
-              step={
-                sliderConfig?.step ||
-                (sliderConfig?.fixedValues ? undefined : 1)
-              }
+              step={sliderConfig?.step || (sliderConfig?.fixedValues ? undefined : 1)}
               onValueChange={(value) => setValue(name, value[0] as any)}
               {...(sliderConfig?.fixedValues && {
                 marks: sliderConfig.fixedValues.map((v) => v.value),
@@ -569,12 +498,7 @@ const FormGenerator = <T extends FieldValues>({
           </div>
 
           {sliderConfig?.showMaxLabel && (
-            <div
-              className={cn(
-                "flex",
-                hasDoubleLabel ? "h-[40px] items-start" : "items-center"
-              )}
-            >
+            <div className={cn("flex", hasDoubleLabel ? "h-[40px] items-start" : "items-center")}>
               {renderEdgeLabel(sliderConfig.maxLabel || `${sliderConfig?.max}`)}
             </div>
           )}

@@ -4,13 +4,11 @@ import dayjs from "dayjs";
 import { useAtomValue } from "jotai";
 import { Ban } from "lucide-react";
 import { useTranslations } from "next-intl";
-
 import { useIsMobile } from "@/hooks/global/use-mobile";
 import { useVideoTaskPolling } from "@/hooks/video-generator/use-video-task-polling";
 import { cn } from "@/lib/utils";
 import { taskByIdAtom } from "@/stores/slices/video-task.store";
 import { TaskStatus } from "@/types/video-task";
-
 import { LdrsLoader } from "../../ldrs-loader";
 import { StatusTagger } from "../../status-tagger";
 import { CardActions } from "./card-actions";
@@ -34,16 +32,14 @@ export function TaskCard({ taskId }: TaskCardProps) {
     <div
       className={cn(
         "group hover:border-primary flex flex-col space-y-2 rounded-lg border p-4 hover:shadow-lg",
-        task.status === TaskStatus.FAILED && "hover:border-destructive"
+        task.status === TaskStatus.FAILED && "hover:border-destructive",
       )}
     >
       <div className="flex items-center justify-between">
         <StatusTagger status={task.status} />
         <CardActions
           task={task}
-          className={cn(
-            isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-          )}
+          className={cn(isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100")}
         />
       </div>
 
@@ -82,8 +78,7 @@ export function TaskCard({ taskId }: TaskCardProps) {
         </p>
         {task.finishAt && (
           <p className="text-muted-foreground text-xs">
-            {t("finished_at")}:{" "}
-            {dayjs(task.finishAt).format("YYYY-MM-DD HH:mm")}
+            {t("finished_at")}: {dayjs(task.finishAt).format("YYYY-MM-DD HH:mm")}
           </p>
         )}
       </div>

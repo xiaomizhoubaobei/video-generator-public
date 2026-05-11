@@ -1,12 +1,12 @@
 "use client";
 
-import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ReactNode } from "react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-type AppThemeProps = {
+interface AppThemeProps {
   children: ReactNode;
   theme: string;
-};
+}
 
 const AppTheme = ({ children, theme }: AppThemeProps) => {
   return (

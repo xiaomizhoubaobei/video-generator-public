@@ -1,6 +1,6 @@
-import { PrimitiveAtom, WritableAtom } from "jotai";
-
-import { TaskQueryResponse, TaskStatus } from "./video-task";
+import type { PrimitiveAtom, WritableAtom } from "jotai";
+import type { TaskQueryResponse } from "./video-task";
+import { TaskStatus } from "./video-task";
 
 /**
  * Model API configuration

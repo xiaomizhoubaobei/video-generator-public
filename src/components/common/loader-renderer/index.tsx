@@ -1,6 +1,9 @@
 import { cn } from "@/lib/utils";
 
-type StatusConfig = { text?: string; icon?: React.ReactNode };
+interface StatusConfig {
+  text?: string;
+  icon?: React.ReactNode;
+}
 
 type StatusKeys<T> = T extends {
   [K in keyof T]: StatusConfig;
@@ -8,11 +11,11 @@ type StatusKeys<T> = T extends {
   ? keyof T
   : never;
 
-type LoaderRendererProps<T extends Record<string, StatusConfig>> = {
+interface LoaderRendererProps<T extends Record<string, StatusConfig>> {
   className?: string;
   status: StatusKeys<T>;
   statuses: T;
-};
+}
 
 export const LoaderRenderer = <T extends Record<string, StatusConfig>>({
   status,

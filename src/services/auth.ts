@@ -29,12 +29,9 @@ export interface LoginResult {
 }
 
 export const login = async (code?: string): Promise<LoginResult> => {
-  const hostname =
-    env.NEXT_PUBLIC_DEV_HOST_NAME || window.location.host.split(".")[0];
+  const hostname = env.NEXT_PUBLIC_DEV_HOST_NAME || window.location.host.split(".")[0];
 
-  const res = await authKy.get(
-    `bot/v1/${hostname}${code ? `?pwd=${code}` : ""}`
-  );
+  const res = await authKy.get(`bot/v1/${hostname}${code ? `?pwd=${code}` : ""}`);
   let errorMessage = "global.error.unknow_error";
 
   if (res.status !== 200) {

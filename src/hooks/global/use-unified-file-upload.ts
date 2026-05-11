@@ -1,5 +1,4 @@
 import { useCallback, useReducer, useRef } from "react";
-
 import { env } from "@/env";
 import { appConfigAtom, languageAtom, store } from "@/stores";
 import { langToCountry } from "@/utils/302";
@@ -16,7 +15,7 @@ interface FileValidationConfig {
   maxFileSize?: number;
   acceptedTypes?: Record<string, string[]>;
   maxFiles?: number;
-  customValidators?: Array<(file: File) => Promise<FileValidationResult>>;
+  customValidators?: ((file: File) => Promise<FileValidationResult>)[];
 }
 
 interface UploadResponse {
@@ -55,7 +54,7 @@ interface UploadFile {
   metadata?: Record<string, unknown>;
 }
 
-type UploadState = {
+interface UploadState {
   selectedFiles: File[];
   uploadedFiles: UploadFile[];
   fileProgresses: Record<string, number>;
@@ -63,7 +62,7 @@ type UploadState = {
   isComplete: boolean;
   error: string | null;
   retryQueue: File[];
-};
+}
 
 type UploadAction =
   | { type: "SELECT_FILES"; payload: File[] }
@@ -130,13 +129,11 @@ function uploadReducer(state: UploadState, action: UploadAction): UploadState {
     case "REMOVE_FILE":
       return {
         ...state,
-        selectedFiles: state.selectedFiles.filter(
-          (_, i) => i !== action.payload
-        ),
+        selectedFiles: state.selectedFiles.filter((_, i) => i !== action.payload),
         fileProgresses: Object.fromEntries(
           Object.entries(state.fileProgresses).filter(
-            ([name]) => name !== state.selectedFiles[action.payload].name
-          )
+            ([name]) => name !== state.selectedFiles[action.payload].name,
+          ),
         ),
       };
     case "RESET":
@@ -174,10 +171,7 @@ export function useUnifiedFileUpload({
   // Validate a single file
   const validateFile = async (file: File) => {
     // Check file size
-    if (
-      validationConfig?.maxFileSize &&
-      file.size > validationConfig.maxFileSize
-    ) {
+    if (validationConfig?.maxFileSize && file.size > validationConfig.maxFileSize) {
       return {
         isValid: false,
         error: {
@@ -193,9 +187,7 @@ export function useUnifiedFileUpload({
       const fileExtension = file.name.split(".").pop()?.toLowerCase() || "";
       let isValidType = false;
 
-      for (const [type, extensions] of Object.entries(
-        validationConfig.acceptedTypes
-      )) {
+      for (const [type, extensions] of Object.entries(validationConfig.acceptedTypes)) {
         if (fileType.startsWith(type) || extensions.includes(fileExtension)) {
           isValidType = true;
           break;
@@ -229,10 +221,8 @@ export function useUnifiedFileUpload({
   // Calculate total upload progress
   const uploadProgress =
     state.selectedFiles.length > 0
-      ? Object.values(state.fileProgresses).reduce(
-          (sum, progress) => sum + progress,
-          0
-        ) / state.selectedFiles.length
+      ? Object.values(state.fileProgresses).reduce((sum, progress) => sum + progress, 0) /
+        state.selectedFiles.length
       : 0;
 
   const uploadFile = async (file: File): Promise<UploadFile> => {
@@ -304,9 +294,7 @@ export function useUnifiedFileUpload({
           xhrListRef.current = xhrListRef.current.filter((x) => x !== xhr);
         });
 
-        const endpoint =
-          uploadConfig?.endpoint ||
-          `${env.NEXT_PUBLIC_API_URL}/302/upload-file`;
+        const endpoint = uploadConfig?.endpoint || `${env.NEXT_PUBLIC_API_URL}/302/upload-file`;
         if (!endpoint) {
           reject(new Error("Upload URL is not configured"));
           return;
@@ -354,9 +342,7 @@ export function useUnifiedFileUpload({
               throw error;
             }
             retries++;
-            await new Promise((resolve) =>
-              setTimeout(resolve, retryDelay * retries)
-            );
+            await new Promise((resolve) => setTimeout(resolve, retryDelay * retries));
           }
         }
       }
@@ -381,22 +367,15 @@ export function useUnifiedFileUpload({
       const fileArray = Array.isArray(files) ? files : [files];
 
       // Check max files limit
-      if (
-        validationConfig?.maxFiles &&
-        fileArray.length > validationConfig.maxFiles
-      ) {
-        throw new Error(
-          `Maximum number of files (${validationConfig.maxFiles}) exceeded`
-        );
+      if (validationConfig?.maxFiles && fileArray.length > validationConfig.maxFiles) {
+        throw new Error(`Maximum number of files (${validationConfig.maxFiles}) exceeded`);
       }
 
       // Validate each file
       for (const file of fileArray) {
         const validationResult = await validateFile(file);
         if (!validationResult.isValid) {
-          throw new Error(
-            validationResult.error?.message || "File validation failed"
-          );
+          throw new Error(validationResult.error?.message || "File validation failed");
         }
       }
 
@@ -407,8 +386,7 @@ export function useUnifiedFileUpload({
         await upload(fileArray);
       }
     } catch (err) {
-      const error =
-        err instanceof Error ? err : new Error("File selection failed");
+      const error = err instanceof Error ? err : new Error("File selection failed");
       dispatch({ type: "UPLOAD_ERROR", payload: error.message });
       onUploadError?.(error);
     }
@@ -431,7 +409,7 @@ export function useUnifiedFileUpload({
       dispatch({ type: "REMOVE_FILE", payload: index });
       onFileSelect?.(state.selectedFiles.filter((_, i) => i !== index));
     },
-    [state.selectedFiles, onFileSelect]
+    [state.selectedFiles, onFileSelect],
   );
 
   return {

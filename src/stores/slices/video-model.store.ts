@@ -1,31 +1,28 @@
 import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
-
 import type { VideoModelSchemaResponseType } from "@/services/video-model/video-model.schema";
 import { getVideoModels } from "@/services/video-model/video-models.api";
-
 import { uiStoreAtom, updateVideoModelAtom } from "./ui.store";
 
 const STORAGE_KEY = "VIDEO_MODELS";
 
 // Video models list state - persisted in localStorage
-export const videoModelsAtom =
-  atomWithStorage<VideoModelSchemaResponseType | null>(
-    STORAGE_KEY,
-    null,
-    createJSONStorage(() =>
-      typeof window !== "undefined"
-        ? localStorage
-        : {
-            getItem: () => null,
-            setItem: () => null,
-            removeItem: () => null,
-          }
-    ),
-    {
-      getOnInit: true,
-    }
-  );
+export const videoModelsAtom = atomWithStorage<VideoModelSchemaResponseType | null>(
+  STORAGE_KEY,
+  null,
+  createJSONStorage(() =>
+    typeof window !== "undefined"
+      ? localStorage
+      : {
+          getItem: () => null,
+          setItem: () => null,
+          removeItem: () => null,
+        },
+  ),
+  {
+    getOnInit: true,
+  },
+);
 
 // Loading state
 export const videoModelsLoadingAtom = atom<boolean>(false);
@@ -42,12 +39,8 @@ export const fetchVideoModelsAtom = atom(null, async (get, set) => {
     const data = await getVideoModels();
     set(videoModelsAtom, data);
     const uiStore = get(uiStoreAtom);
-    const t2vDefaultModel = data.models.filter(
-      (model) => model.capabilities["t2v"]
-    )[0];
-    const i2vDefaultModel = data.models.filter(
-      (model) => model.capabilities["i2v"]
-    )[0];
+    const t2vDefaultModel = data.models.filter((model) => model.capabilities["t2v"])[0];
+    const i2vDefaultModel = data.models.filter((model) => model.capabilities["i2v"])[0];
     if (uiStore.t2vVideoModel === "") {
       set(updateVideoModelAtom, {
         type: "t2v",
@@ -63,10 +56,7 @@ export const fetchVideoModelsAtom = atom(null, async (get, set) => {
 
     return data;
   } catch (error) {
-    const err =
-      error instanceof Error
-        ? error
-        : new Error("Failed to fetch video models");
+    const err = error instanceof Error ? error : new Error("Failed to fetch video models");
     set(videoModelsErrorAtom, err);
     throw err;
   } finally {
@@ -93,20 +83,16 @@ export const getVideoModelByNameAtom = atom((get) => (modelName: string) => {
 });
 
 // Selector atom for getting models by provider
-export const getVideoModelsByProviderAtom = atom(
-  (get) => (provider: string) => {
-    const models = get(allVideoModelsAtom);
-    return models.filter((model) => model.provider === provider);
-  }
-);
+export const getVideoModelsByProviderAtom = atom((get) => (provider: string) => {
+  const models = get(allVideoModelsAtom);
+  return models.filter((model) => model.provider === provider);
+});
 
 // Selector atom for getting models by capability
-export const getVideoModelsByCapabilityAtom = atom(
-  (get) => (capability: "t2v" | "i2v" | "v2v") => {
-    const models = get(allVideoModelsAtom);
-    return models.filter((model) => model.capabilities[capability]);
-  }
-);
+export const getVideoModelsByCapabilityAtom = atom((get) => (capability: "t2v" | "i2v" | "v2v") => {
+  const models = get(allVideoModelsAtom);
+  return models.filter((model) => model.capabilities[capability]);
+});
 
 // Clear stored data
 export const clearVideoModelsAtom = atom(null, async (get, set) => {

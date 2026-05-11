@@ -1,7 +1,7 @@
 "use client";
 
-import { useSetAtom } from "jotai";
 import { useEffect } from "react";
+import { useSetAtom } from "jotai";
 import { env } from "@/env";
 import useAuth from "@/hooks/auth";
 import { usePathname, useRouter } from "@/i18n/routing";

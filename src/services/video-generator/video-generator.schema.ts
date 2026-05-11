@@ -46,9 +46,7 @@ export const videoGeneratorSchemaResponse = z.object({
   created_at: z.string(),
 });
 
-export type VideoGeneratorSchemaResponseType = z.infer<
-  typeof videoGeneratorSchemaResponse
->;
+export type VideoGeneratorSchemaResponseType = z.infer<typeof videoGeneratorSchemaResponse>;
 
 export const videoGeneratorFetchResponseSchema = z.object({
   video_url: z.string(),
@@ -63,6 +61,4 @@ export const videoGeneratorFetchResponseSchema = z.object({
   mode: z.string(),
 });
 
-export type VideoGeneratorFetchResponseType = z.infer<
-  typeof videoGeneratorFetchResponseSchema
->;
+export type VideoGeneratorFetchResponseType = z.infer<typeof videoGeneratorFetchResponseSchema>;

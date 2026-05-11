@@ -1,9 +1,9 @@
 import { useDomain } from "@/hooks/global/use-domain";
 
-type Props = {
+interface Props {
   content: string;
   replace?: string;
-};
+}
 
 const HostRenderer = ({ content, replace = "302.AI" }: Props) => {
   const domain = useDomain();

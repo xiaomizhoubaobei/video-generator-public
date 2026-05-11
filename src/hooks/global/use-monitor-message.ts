@@ -1,5 +1,5 @@
-import { saveAs } from "file-saver";
 import { useCallback } from "react";
+import { saveAs } from "file-saver";
 
 interface MonitorMessage {
   from: "monitor";
@@ -10,19 +10,16 @@ interface MonitorMessage {
 }
 
 export const useMonitorMessage = () => {
-  const sendMonitorMessage = useCallback(
-    (message: Omit<MonitorMessage, "from">) => {
-      console.log("sendMonitorMessage", message);
-      window.parent.postMessage(
-        {
-          from: "monitor",
-          ...message,
-        },
-        "*"
-      );
-    },
-    []
-  );
+  const sendMonitorMessage = useCallback((message: Omit<MonitorMessage, "from">) => {
+    console.log("sendMonitorMessage", message);
+    window.parent.postMessage(
+      {
+        from: "monitor",
+        ...message,
+      },
+      "*",
+    );
+  }, []);
 
   const handleDownload = useCallback(
     (url: string, filename?: string) => {
@@ -33,11 +30,11 @@ export const useMonitorMessage = () => {
       });
       saveAs(url, filename);
     },
-    [sendMonitorMessage]
+    [sendMonitorMessage],
   );
 
   const handleNewWindow = useCallback(
-    (url: string, target: string = "_blank") => {
+    (url: string, target = "_blank") => {
       sendMonitorMessage({
         eventType: "openNewWindow",
         url,
@@ -45,7 +42,7 @@ export const useMonitorMessage = () => {
       });
       window.open(url, target);
     },
-    [sendMonitorMessage]
+    [sendMonitorMessage],
   );
 
   return {

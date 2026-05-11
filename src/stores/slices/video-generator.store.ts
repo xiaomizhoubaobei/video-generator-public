@@ -1,8 +1,6 @@
 import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
-
 import type { VideoGeneratorSchemaType } from "@/services/video-generator/video-generator.schema";
-
 import { uiStoreAtom } from "./ui.store";
 
 const STORAGE_KEY = "VIDEO_GENERATOR_FORM";
@@ -47,9 +45,7 @@ const DEFAULT_FORM_VALUES: Partial<VideoGeneratorSchemaType> = {
 };
 
 // Video generator form state - persisted in localStorage
-export const videoGeneratorFormAtom = atomWithStorage<
-  Partial<VideoGeneratorSchemaType>
->(
+export const videoGeneratorFormAtom = atomWithStorage<Partial<VideoGeneratorSchemaType>>(
   STORAGE_KEY,
   DEFAULT_FORM_VALUES,
   createJSONStorage(() =>
@@ -59,27 +55,23 @@ export const videoGeneratorFormAtom = atomWithStorage<
           getItem: () => null,
           setItem: () => null,
           removeItem: () => null,
-        }
+        },
   ),
   {
     getOnInit: true,
-  }
+  },
 );
 
 // Atom for updating a single field
 export const updateVideoGeneratorFieldAtom = atom(
   null,
-  (
-    get,
-    set,
-    payload: { key: keyof VideoGeneratorSchemaType; value: unknown }
-  ) => {
+  (get, set, payload: { key: keyof VideoGeneratorSchemaType; value: unknown }) => {
     const currentForm = get(videoGeneratorFormAtom);
     set(videoGeneratorFormAtom, {
       ...currentForm,
       [payload.key]: payload.value,
     });
-  }
+  },
 );
 
 // Atom for updating multiple fields at once
@@ -91,7 +83,7 @@ export const updateVideoGeneratorFormAtom = atom(
       ...currentForm,
       ...payload,
     });
-  }
+  },
 );
 
 // Atom for resetting form to default values (except model, prompt, image1-4, and end_image)
@@ -118,7 +110,7 @@ export const resetVideoGeneratorFieldAtom = atom(
       ...currentForm,
       [key]: DEFAULT_FORM_VALUES[key],
     });
-  }
+  },
 );
 
 // Selector atom for checking if form has been modified from defaults
@@ -128,12 +120,10 @@ export const isVideoGeneratorFormModifiedAtom = atom((get) => {
 });
 
 // Selector atom for getting specific field value
-export const getVideoGeneratorFieldAtom = atom(
-  (get) => (key: keyof VideoGeneratorSchemaType) => {
-    const form = get(videoGeneratorFormAtom);
-    return form[key];
-  }
-);
+export const getVideoGeneratorFieldAtom = atom((get) => (key: keyof VideoGeneratorSchemaType) => {
+  const form = get(videoGeneratorFormAtom);
+  return form[key];
+});
 
 // Atom for clearing form
 export const clearVideoGeneratorFormAtom = atom(null, (get, set) => {
@@ -162,8 +152,7 @@ export const videoGeneratorFormSummaryAtom = atom((get) => {
     isModified,
     isValid,
     fieldsCount: Object.keys(form).length,
-    filledFieldsCount: Object.values(form).filter(
-      (v) => v !== undefined && v !== null && v !== ""
-    ).length,
+    filledFieldsCount: Object.values(form).filter((v) => v !== undefined && v !== null && v !== "")
+      .length,
   };
 });

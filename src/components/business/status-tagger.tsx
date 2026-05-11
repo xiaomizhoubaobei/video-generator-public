@@ -2,11 +2,9 @@
 
 import { Ban, CircleCheckBig } from "lucide-react";
 import { useTranslations } from "next-intl";
-
 import { LoaderRenderer } from "@/components/common/loader-renderer";
 import { cn } from "@/lib/utils";
 import { TaskStatus } from "@/types/video-task";
-
 import { LdrsLoader } from "./ldrs-loader";
 
 interface StatusTaggerProps {
@@ -26,7 +24,7 @@ export function StatusTagger({ status }: StatusTaggerProps) {
     <div
       className={cn(
         "flex w-fit flex-row items-center space-x-2 rounded-lg px-3 py-1.5 text-xs text-white backdrop-blur",
-        statusMap[status].color
+        statusMap[status].color,
       )}
     >
       <p>{statusMap[status].text}</p>

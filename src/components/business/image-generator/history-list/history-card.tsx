@@ -3,13 +3,11 @@
 import { useAtomValue } from "jotai";
 import { Ban } from "lucide-react";
 import { useTranslations } from "next-intl";
-
 import { useIsMobile } from "@/hooks/global/use-mobile";
 import { useImageTaskPolling } from "@/hooks/image-generator/use-image-task-polling";
 import { cn } from "@/lib/utils";
 import { taskByIdAtom } from "@/stores/slices/image-task.store";
 import { TaskStatus } from "@/types/video-task";
-
 import { LdrsLoader } from "../../ldrs-loader";
 import { CardActions } from "./card-actions";
 
@@ -48,7 +46,7 @@ export function TaskCard({ taskId, onImageSelect, onFullscreen }: TaskCardProps)
       <div
         className={cn(
           "group hover:border-primary relative flex cursor-pointer flex-col space-y-2 rounded-lg border p-4 transition-all hover:shadow-lg",
-          task.status === TaskStatus.FAILED && "hover:border-destructive"
+          task.status === TaskStatus.FAILED && "hover:border-destructive",
         )}
       >
         <p className="text-muted-foreground text-xs font-medium">
@@ -57,18 +55,14 @@ export function TaskCard({ taskId, onImageSelect, onFullscreen }: TaskCardProps)
 
         {task.status === TaskStatus.COMPLETED && task.image && (
           <div onClick={handleCardClick}>
-            <img
-              src={task.image}
-              alt={task.displayName}
-              className="w-full rounded-md"
-            />
+            <img src={task.image} alt={task.displayName} className="w-full rounded-md" />
             <CardActions
               task={task}
               className={cn(
                 "absolute top-10 right-4 bg-black/40 backdrop-blur-xs",
                 isMobile
                   ? "opacity-100"
-                  : "opacity-0 transition-all duration-300 group-hover:opacity-100"
+                  : "opacity-0 transition-all duration-300 group-hover:opacity-100",
               )}
               onImageSelect={onImageSelect}
               onFullscreen={handleFullscreen}
@@ -102,7 +96,7 @@ export function TaskCard({ taskId, onImageSelect, onFullscreen }: TaskCardProps)
                 "absolute top-10 right-4",
                 isMobile
                   ? "opacity-100"
-                  : "bg-black/40 opacity-0 backdrop-blur-xs transition-all duration-300 group-hover:opacity-100"
+                  : "bg-black/40 opacity-0 backdrop-blur-xs transition-all duration-300 group-hover:opacity-100",
               )}
               onImageSelect={onImageSelect}
               onFullscreen={handleFullscreen}
@@ -126,7 +120,7 @@ export function TaskCard({ taskId, onImageSelect, onFullscreen }: TaskCardProps)
             title={task.params.prompt}
             className={cn(
               "absolute right-0 bottom-0 left-0 h-0 min-h-0 items-end overflow-hidden rounded-b-lg bg-black/40 px-4 backdrop-blur-xs transition-all duration-300 group-hover:h-1/4 group-hover:py-2",
-              isMobile ? "h-1/4" : ""
+              isMobile ? "h-1/4" : "",
             )}
           >
             <p className="line-clamp-3 text-sm break-words text-white group-hover:transition-all group-hover:duration-200">

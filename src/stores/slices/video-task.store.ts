@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
-
-import { TaskStatus, VideoTask } from "@/types/video-task";
+import type { VideoTask } from "@/types/video-task";
+import { TaskStatus } from "@/types/video-task";
 
 const STORAGE_KEY = "VIDEO_TASKS";
 
@@ -15,9 +15,9 @@ export const videoTasksAtom = atomWithStorage<VideoTask[]>(
           getItem: () => null,
           setItem: () => null,
           removeItem: () => null,
-        }
+        },
   ),
-  { getOnInit: true }
+  { getOnInit: true },
 );
 
 export const addTaskAtom = atom(null, (get, set, task: VideoTask) => {
@@ -31,16 +31,16 @@ export const updateTaskAtom = atom(
     const tasks = get(videoTasksAtom);
     set(
       videoTasksAtom,
-      tasks.map((task) => (task.id === id ? { ...task, ...updates } : task))
+      tasks.map((task) => (task.id === id ? { ...task, ...updates } : task)),
     );
-  }
+  },
 );
 
 export const removeTaskAtom = atom(null, (get, set, id: string) => {
   const tasks = get(videoTasksAtom);
   set(
     videoTasksAtom,
-    tasks.filter((task) => task.id !== id)
+    tasks.filter((task) => task.id !== id),
   );
 });
 
@@ -49,19 +49,15 @@ export const clearCompletedTasksAtom = atom(null, (get, set) => {
   set(
     videoTasksAtom,
     tasks.filter(
-      (task) =>
-        task.status !== TaskStatus.COMPLETED &&
-        task.status !== TaskStatus.FAILED
-    )
+      (task) => task.status !== TaskStatus.COMPLETED && task.status !== TaskStatus.FAILED,
+    ),
   );
 });
 
 export const pendingTasksAtom = atom((get) => {
   const tasks = get(videoTasksAtom);
   return tasks.filter(
-    (task) =>
-      task.status === TaskStatus.PENDING ||
-      task.status === TaskStatus.PROCESSING
+    (task) => task.status === TaskStatus.PENDING || task.status === TaskStatus.PROCESSING,
   );
 });
 

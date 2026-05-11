@@ -20,9 +20,9 @@ export const SIGN_IN_FORM: FormGeneratorType<SignInFormType>[] = [
   },
 ];
 
-type FormConstantsProps = {
+interface FormConstantsProps {
   signInForm: FormGeneratorType<SignInFormType>[];
-};
+}
 
 export const FORM_CONSTANTS: FormConstantsProps = {
   signInForm: SIGN_IN_FORM,

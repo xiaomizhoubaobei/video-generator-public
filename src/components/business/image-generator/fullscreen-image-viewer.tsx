@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
 import { X } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 
 interface FullscreenImageViewerProps {
@@ -11,10 +9,7 @@ interface FullscreenImageViewerProps {
   onClose: () => void;
 }
 
-export function FullscreenImageViewer({
-  imageUrl,
-  onClose,
-}: FullscreenImageViewerProps) {
+export function FullscreenImageViewer({ imageUrl, onClose }: FullscreenImageViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,11 +58,7 @@ export function FullscreenImageViewer({
         onClick={(e) => e.stopPropagation()}
         role="presentation"
       >
-        <img
-          src={imageUrl}
-          alt="Fullscreen"
-          className="max-h-screen max-w-screen"
-        />
+        <img src={imageUrl} alt="Fullscreen" className="max-h-screen max-w-screen" />
         <Button
           variant="ghost"
           size="icon"

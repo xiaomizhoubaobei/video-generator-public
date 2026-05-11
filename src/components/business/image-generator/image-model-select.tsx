@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-
 import { Check, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
-
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -15,12 +13,9 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { IMAGE_MODEL_LIST, ImageModelInfo } from "@/constants/image-models";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import type { ImageModelInfo } from "@/constants/image-models";
+import { IMAGE_MODEL_LIST } from "@/constants/image-models";
 import { cn } from "@/lib/utils";
 
 interface ImageModelSelectProps {
@@ -47,7 +42,7 @@ export function ImageModelSelect({
         name: model.name,
         group: model.group,
       })),
-    []
+    [],
   );
 
   // Group models by provider
@@ -79,11 +74,7 @@ export function ImageModelSelect({
       }
     }
 
-    return (
-      <span className="text-muted-foreground">
-        {placeholder ?? t("select_model")}
-      </span>
-    );
+    return <span className="text-muted-foreground">{placeholder ?? t("select_model")}</span>;
   };
 
   // Handle wheel events on popover content
@@ -127,10 +118,7 @@ export function ImageModelSelect({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className={cn(
-              "bg-background w-full justify-between px-3 font-normal",
-              className
-            )}
+            className={cn("bg-background w-full justify-between px-3 font-normal", className)}
           >
             {getDisplayValue()}
             <ChevronDown className="h-4 w-4 shrink-0 opacity-50" />
@@ -138,9 +126,7 @@ export function ImageModelSelect({
         </PopoverTrigger>
         <PopoverContent
           className="border-border w-full min-w-[var(--radix-popper-anchor-width)] p-0"
-          container={
-            typeof document !== "undefined" ? document.body : undefined
-          }
+          container={typeof document !== "undefined" ? document.body : undefined}
         >
           <Command loop shouldFilter={true} defaultValue="" value={value}>
             <CommandInput placeholder={t("search_model")} />
@@ -153,10 +139,7 @@ export function ImageModelSelect({
                       key={model.id}
                       value={model.id}
                       onSelect={() => handleSelect(model.id)}
-                      className={cn(
-                        "relative pl-8",
-                        value === model.id && "bg-accent"
-                      )}
+                      className={cn("relative pl-8", value === model.id && "bg-accent")}
                     >
                       <div className="flex flex-1 items-center gap-2">
                         <div
@@ -164,7 +147,7 @@ export function ImageModelSelect({
                             "flex h-4 w-4 items-center justify-center rounded border",
                             value === model.id
                               ? "border-primary bg-primary"
-                              : "border-muted-foreground"
+                              : "border-muted-foreground",
                           )}
                         >
                           {value === model.id && (

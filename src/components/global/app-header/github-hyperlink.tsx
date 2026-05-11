@@ -1,12 +1,12 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { env } from "@/env";
 import { useIsHideBrand } from "@/hooks/global/use-is-hide-brand";
 import { useTheme } from "@/hooks/global/use-theme";
 import { cn } from "@/lib/utils";
-import githubMark from "@/public/svgs/github-mark.svg";
 import githubMarkWhite from "@/public/svgs/github-mark-white.svg";
+import githubMark from "@/public/svgs/github-mark.svg";
 
 export function GithubHyperlink() {
   const t = useTranslations();

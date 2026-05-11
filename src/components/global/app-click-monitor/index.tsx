@@ -72,22 +72,18 @@ export const AppClickMonitor = () => {
   }, []);
 
   const isSpecialDownload = useCallback(
-    (url: string) =>
-      ["blob:", "data:"].some((protocol) => url.startsWith(protocol)),
-    []
+    (url: string) => ["blob:", "data:"].some((protocol) => url.startsWith(protocol)),
+    [],
   );
 
-  const findClosestAnchor = useCallback(
-    (element: HTMLElement | null): HTMLAnchorElement | null => {
-      let current = element;
-      for (let i = 0; i < 5 && current; i++) {
-        if (current.tagName === "A") return current as HTMLAnchorElement;
-        current = current.parentElement;
-      }
-      return null;
-    },
-    []
-  );
+  const findClosestAnchor = useCallback((element: HTMLElement | null): HTMLAnchorElement | null => {
+    let current = element;
+    for (let i = 0; i < 5 && current; i++) {
+      if (current.tagName === "A") return current as HTMLAnchorElement;
+      current = current.parentElement;
+    }
+    return null;
+  }, []);
 
   const { sendMonitorMessage } = useMonitorMessage();
 
@@ -101,9 +97,7 @@ export const AppClickMonitor = () => {
       const download = anchor.download;
 
       const eventType =
-        isDownloadLink(url) ||
-        isSpecialDownload(url) ||
-        anchor.hasAttribute("download")
+        isDownloadLink(url) || isSpecialDownload(url) || anchor.hasAttribute("download")
           ? "downloadFile"
           : "openNewWindow";
 
@@ -116,7 +110,7 @@ export const AppClickMonitor = () => {
         });
       }
     },
-    [isDownloadLink, isSpecialDownload, findClosestAnchor, sendMonitorMessage]
+    [isDownloadLink, isSpecialDownload, findClosestAnchor, sendMonitorMessage],
   );
 
   useEffect(() => {

@@ -2,15 +2,9 @@
 
 import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
-
 import { LeftPanel } from "@/components/business/left-panel/left-panel";
 import { RightPanel } from "@/components/business/right-panel/right-panel";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
 import { useIsMobile } from "@/hooks/global/use-mobile";
 import { uiStoreAtom } from "@/stores/slices/ui.store";
@@ -28,9 +22,7 @@ export default function Home() {
         {isMobile ? (
           <>
             <LeftPanel
-              onDrawerClicked={() =>
-                setUiStore((prev) => ({ ...prev, drawerOpen: true }))
-              }
+              onDrawerClicked={() => setUiStore((prev) => ({ ...prev, drawerOpen: true }))}
             />
 
             <Drawer
@@ -44,9 +36,7 @@ export default function Home() {
             >
               <DrawerContent className="flex h-[90vh] flex-col">
                 <DrawerHeader className="p-2">
-                  <DrawerTitle className="text-normal">
-                    {t("history")}
-                  </DrawerTitle>
+                  <DrawerTitle className="text-normal">{t("history")}</DrawerTitle>
                 </DrawerHeader>
                 <div className="min-h-0 flex-1 overflow-hidden px-4">
                   <RightPanel />

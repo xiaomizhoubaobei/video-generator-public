@@ -11,6 +11,7 @@
 The open-source version of [AI Video Generator](https://302.ai/product/detail/26) from [302.AI](https://302.ai). You can log in to 302.AI directly to use the online version with zero code and zero configuration. Or modify this project according to your needs, pass in 302.AI's API KEY, and deploy it yourself.
 
 ## Interface Preview
+
 Select a video model, enter prompts and set parameters to generate high-quality AI videos with one click
 ![](docs/302_AI_Video_Generator_en_screenshot_01.png)
 
@@ -23,23 +24,34 @@ Support multiple AI models to generate images, and use the generated images for 
 ## Project Features
 
 ### 🧩 Multi-Model Support
+
     Different models provide different configuration options, including camera control and video effects
+
 ### 🎛️ Multi-Mode Selection
+
     Offers two modes: text-to-video and image-to-video, choose according to your needs
+
 ### 🖼️ AI Image Generation
+
     Generate AI images with one click and use them for video creation
+
 ### 📜 History
+
     Save your creation history, memories are never lost, download anytime anywhere.
+
 ### 🌓 Dark Mode
+
     Switch freely to protect your eyes.
+
 ### 🌐 Multi-Language & Internationalization Support
-  - Chinese Interface
-  - English Interface
-  - Japanese Interface
+
+- Chinese Interface
+- English Interface
+- Japanese Interface
 
 ## 🚩 Future Updates
-- [ ] Add more video models
 
+- [ ] Add more video models
 
 ## 🛠️ Tech Stack
 
@@ -56,36 +68,45 @@ Support multiple AI models to generate images, and use the generated images for 
 - **Commit Standards**: Husky, Commitlint
 
 ## Development & Deployment
+
 1. Clone the project
+
 ```bash
 git clone https://github.com/302ai/302-video-generator-public
 cd 302-video-generator-public
 ```
 
 2. Install dependencies
+
 ```bash
 yarn install
 ```
 
 3. Environment configuration
+
 ```bash
 cp .env.example .env.local
 ```
+
 Modify environment variables in `.env.local` as needed.
 
 4. Start development server
+
 ```bash
 yarn dev
 ```
 
 5. Build production version
+
 ```bash
 yarn build
 yarn start
 ```
 
 ## ✨ About 302.AI ✨
+
 [302.AI](https://302.ai) is a pay-as-you-go AI application platform that solves the last mile problem of AI in practice for users.
+
 1. 🧠 Brings together the latest and most comprehensive AI capabilities and brands, including but not limited to language models, image models, voice models, and video models.
 2. 🚀 Deep application development based on foundation models, we develop real AI products, not just simple chatbots
 3. 💰 Zero monthly fees, all features are pay-as-you-go, fully open, truly low threshold, high ceiling.
