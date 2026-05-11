@@ -1,0 +1,21 @@
+# Dependencies
+node_modules
+
+# Build output
+.next
+out
+dist
+build
+
+# Lock files
+yarn.lock
+
+# Config files (minified/generated)
+*.min.js
+*.min.css
+
+# Public static assets
+public/**/*
+
+# Generated types
+*.d.ts
