@@ -97,25 +97,17 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.6",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.4.0",
     "husky": "^9.1.7",
     "jiti": "^2.6.1",
-    "lint-staged": "^15.2.11",
     "postcss": "^8.5.8",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "tailwindcss": "^4.1.14",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.2"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix --no-cache",
-      "prettier --write"
-    ]
   },
   "packageManager": "yarn@1.22.22",
   "overrides": {
