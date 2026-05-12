@@ -73,6 +73,7 @@ main:
             branch: main
             git_user: ${GIT_USERNAME}
             git_email: ${GIT_EMAIL}
+            force_push: true
   "crontab: 0 0 1 * *":
     - services:
         - docker
