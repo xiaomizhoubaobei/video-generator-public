@@ -7,10 +7,10 @@ export interface ToastInfo {
   message: string;
 }
 
-export interface MittEvent {
+export type MittEvent = {
   ToastError: ToastInfo;
   ToastSuccess: ToastInfo;
-}
+};
 const emitter = mitt<MittEvent>();
 
 export { emitter };
