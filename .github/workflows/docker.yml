@@ -76,9 +76,9 @@ jobs:
         uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5.10.0
         with:
           images: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/302_prompt_generator
-            ghcr.io/${{ github.repository }}/302_prompt_generator
-            crpi-wk2d8umombj539de.cn-shanghai.personal.cr.aliyuncs.com/xmz-1/302_prompt_generator
+            ${{ secrets.DOCKERHUB_USERNAME }}/video-generator-public
+            ghcr.io/${{ github.repository }}
+            crpi-wk2d8umombj539de.cn-shanghai.personal.cr.aliyuncs.com/xmz-1/video-generator-public
           # 关闭所有默认生成器
           flavor: |
             latest=false
@@ -135,13 +135,13 @@ jobs:
       - name: 证明 DockerHub 镜像
         uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
-          subject-name: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/302_prompt_generator
+          subject-name: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/video-generator-public
           subject-digest: ${{ steps.build.outputs.digest }}
           push-to-registry: true
 
       - name: 证明 GHCR 镜像
         uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
-          subject-name: ghcr.io/${{ github.repository }}/302_prompt_generator
+          subject-name: ghcr.io/${{ github.repository }}
           subject-digest: ${{ steps.build.outputs.digest }}
           push-to-registry: true
