@@ -9,8 +9,13 @@ jobs:
   check-digest:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+        with:
+          egress-policy: audit
+
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Get current base image info from Dockerfile
         id: current_info
@@ -64,7 +69,7 @@ jobs:
 
       - name: Create issue on digest change
         if: steps.compare.outputs.digest_changed == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
           script: |
             const imageName = '${{ steps.current_info.outputs.image_name }}';
